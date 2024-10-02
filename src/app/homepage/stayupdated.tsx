@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import UpdatedCard from "../../components/cards/UpdatedCard";
+import UpdatedCard from "../components/cards/UpdatedCard";
 
 const drivenItems = [
     {

@@ -1,6 +1,6 @@
 'use client';
 import { FC, useEffect } from 'react';
-import PLAY from '@/public/assets/images/play.png';
+import PLAY from '@/public/assets/images/play.svg';
 import Image from 'next/image';
 const MainComponent: FC = () => {
 
@@ -20,8 +20,8 @@ const MainComponent: FC = () => {
                     </h2>
                 </div>
                 <div className='relative flex items-center ml-4 sm:ml-[90px] mt-4 sm:mt-[45px] pb-8 sm:pb-[108px]'>
-                    <Image src={PLAY} className='w-[40px]' alt='Picture' />
-                    <span className="text-sm sm:text-[20px] text-[#475467] pl-[30px] leading-6">
+                    <Image src={PLAY} className='w-10 sm:w-20' alt='Picture' />
+                    <span className="text-sm sm:text-[20px] text-[#475467] pl-4 sm:pl-8 leading-6">
                         Listen to what <br /> Edosa has to say
                     </span>
                 </div>

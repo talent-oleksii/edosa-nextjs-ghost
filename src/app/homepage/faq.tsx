@@ -1,6 +1,6 @@
 'use client';
 import React, { FC, useState } from "react";
-import FAQCard from "../../components/FAQCard";
+import FAQCard from "../components/FAQCard";
 import "@/public/assets/css/FAQ.css";
 
 interface FAQItem {
