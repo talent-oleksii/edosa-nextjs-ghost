@@ -50,8 +50,8 @@ const Header: FC = () => {
 
       <div className='flex items-center justify-center mr-2 sm:mr-10 px-1 sm:px-3 gap-3'>
         <Image src={SEARCHICON} className='hidden sm:block w-5 h-5 hover:cursor-pointer' alt='search' />
-        <DefaultButton>Sign Up</DefaultButton>
-        <DefaultButton className='max-w-3'>&nbsp;</DefaultButton>
+        <DefaultButton className='text-xs sm:text-[20px] '>Sign Up</DefaultButton>
+        <DefaultButton className='max-w-3 '>&nbsp;</DefaultButton>
       </div>
     </div>
   );

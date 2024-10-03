@@ -52,7 +52,7 @@ const Footer: FC = () => {
       </div>
       <div>
         <hr className="mt-20 sm:mt-11" />
-        <span className="absolute right-24 text-base leading-6 text-[#667085] px-3 sm:px-5 py-1 mt-7 ">© 2024 All rights reserved.</span>
+        <span className="absolute right-24 sm:right-80 text-base leading-6 text-[#667085] px-3 sm:px-5 py-1 mt-7 ">© 2024 All rights reserved.</span>
       </div>
     </div>
   );

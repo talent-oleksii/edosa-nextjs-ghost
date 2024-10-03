@@ -11,15 +11,17 @@ import { getPosts } from "./ghost-client";
 const Home: NextPage = () => {
   return (
     <div className='mx-5 pb-5'>
-      <Header />
-      <MainComponent />
-      <FlowingBar />
-      <ValueDriven />
-      <StayUpdated />
-      <FAQ />
-      <SignUpNewsletter />
-      <Footer />
-    </div>
+      <div className="max-w-[1440px] mx-auto">
+        <Header />
+        <MainComponent />
+        <FlowingBar />
+        <ValueDriven />
+        <StayUpdated />
+        <FAQ />
+        <SignUpNewsletter />
+        <Footer />
+      </div>
+    </div >
   );
 };
 

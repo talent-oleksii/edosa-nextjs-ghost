@@ -1,29 +1,21 @@
 'use client';
 import { FC, useEffect } from 'react';
-import PLAY from '@/public/assets/images/play.svg';
-import Image from 'next/image';
 const LearnMainComponent: FC = () => {
 
     return (
-        <div className='bg-main-person bg-home-pattern bg-cover bg-center rounded-[20px]'>
+        <div className='bg-[#F3F8FE] rounded-[20px] h-[330px] sm:h-[736px]'>
             <div className='ml-[20px] mr-[20px] relative'>
 
                 <div className="inset-0 flex ml-4 sm:ml-[94px] pt-[30px] sm:pt-[168px]">
                     <h2 className="text-2xl sm:text-[60px] font-bold text-[#475467] leading-10 sm:leading-[72px]">
-                        Welcome to Your AI and <br />Data-Driven Journey
+                        Master Data and AI with <br /> Tailored Educational Paths
                     </h2>
                 </div>
                 <div className="inset-0 flex mt-4 sm:mt-[45px] ml-4 sm:ml-[94px]">
-                    <h2 className="text-lg sm:text-[36px] text-[#475467] leading-8 sm:leading-[44px]">
-                        <span className='text-[#FF6E3E] font-bold'>Unlock Your Business's Potential<br /> with Edosa Odaro, </span>
-                        the Visionary<br /> and multi-award-winning data<br /> Value-Driven Data Leader
+                    <h2 className="text-lg sm:text-3xl text-[#475467] leading-8 sm:leading-[44px]">
+                        Choose the plan that best fits your <br /> needs and
+                        <span className='text-[#FF6E3E] font-bold'> start transforming data <br /> into decisions. </span>
                     </h2>
-                </div>
-                <div className='relative flex items-center ml-4 sm:ml-[90px] mt-4 sm:mt-[45px] pb-8 sm:pb-[108px]'>
-                    <Image src={PLAY} className='w-10 sm:w-20' alt='Picture' />
-                    <span className="text-sm sm:text-[20px] text-[#475467] pl-4 sm:pl-8 leading-6">
-                        Listen to what <br /> Edosa has to say
-                    </span>
                 </div>
             </div>
         </div >
