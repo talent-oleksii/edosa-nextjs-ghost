@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 interface DefaultButtonProps {
-    children: any;
+    children?: any;
     buttonColor?: string;
     className?: string;
 }

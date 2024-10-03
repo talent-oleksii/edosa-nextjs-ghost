@@ -1,5 +1,5 @@
 'use client';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import PLAY from '@/public/assets/images/play.svg';
 import Image from 'next/image';
 const MainComponent: FC = () => {

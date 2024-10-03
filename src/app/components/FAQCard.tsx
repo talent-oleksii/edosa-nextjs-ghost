@@ -1,6 +1,5 @@
 import React from "react";
 import "@/public/assets/css/FAQ.css";
-import { FiPlus } from "react-icons/fi";
 
 // Define the type for FAQ item
 interface FAQItem {

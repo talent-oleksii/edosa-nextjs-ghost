@@ -1,5 +1,5 @@
 'use client';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import "react-multi-carousel/lib/styles.css";
 import Carousel from 'react-multi-carousel';
 import ITEM1 from '@/public/assets/svg/item1.svg';
