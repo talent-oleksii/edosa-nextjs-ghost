@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Header from '../header';
 import Footer from '../footer';
-import ReviewComponent from "../components/reviewcomponent";
 import ReadMainComponent from "./readmaincomponent";
 import Books from "./books";
 import HintPage from "./hintpage";
