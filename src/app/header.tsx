@@ -16,19 +16,19 @@ const links: Array<{ text: string, link: string, textColor: string, bgColor: str
   },
   {
     text: "Read",
-    link: "",
+    link: "/read",
     textColor: "#FF6E3E",
     bgColor: "#FFF7F4"
   },
   {
     text: "Watch",
-    link: "",
+    link: "/watch",
     textColor: "#9E77ED",
     bgColor: "#F7F6FF"
   },
   {
     text: "Meet",
-    link: "",
+    link: "/meet",
     textColor: "#95DA79",
     bgColor: "#F2FAEC"
   },
@@ -53,7 +53,9 @@ const Header: FC = () => {
   return (
     <div className='flex items-center justify-between relative my-1 sm:my-2'>
       <div className='hidden sm:block'>
-        <Image src={LOGO} width={360} className='hidden lg:block ml-[85px]' alt='Logo' />
+        <Link href="/">
+          <Image src={LOGO} width={360} className='hidden lg:block ml-[85px]' alt='Logo' />
+        </Link>
       </div>
 
       <div
