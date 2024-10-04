@@ -4,6 +4,8 @@ import LearnMainComponent from './learnmaincomponent';
 import Footer from '../footer';
 import LearnStyle from "./learnstyle";
 import BuildPackage from "./buildpackage";
+import MavenCourse from "./mavencourse";
+import ReviewComponent from "../components/reviewcomponent";
 const Learn: NextPage = () => {
     return (
         <div className='mx-5 pb-5'>
@@ -12,6 +14,8 @@ const Learn: NextPage = () => {
                 <LearnMainComponent />
                 <LearnStyle />
                 <BuildPackage />
+                <MavenCourse />
+                <ReviewComponent />
                 <Footer />
             </div>
         </div>

@@ -1,41 +1,69 @@
 'use client';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import LOGO from '@/public/assets/images/logo.png';
 import SEARCHICON from '@/public/assets/svg/search.svg';
 import DefaultButton from './components/buttons/DefaultButton';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-const links: Array<{ text: string, link: string }> = [
+
+const links: Array<{ text: string, link: string, textColor: string, bgColor: string }> = [
   {
     text: "Learn",
     link: "/learn",
+    textColor: "#5C76FF",
+    bgColor: "#F3F8FE"
   },
   {
     text: "Read",
     link: "",
+    textColor: "#FF6E3E",
+    bgColor: "#FFF7F4"
   },
   {
     text: "Watch",
     link: "",
+    textColor: "#9E77ED",
+    bgColor: "#F7F6FF"
   },
   {
     text: "Meet",
     link: "",
+    textColor: "#95DA79",
+    bgColor: "#F2FAEC"
   },
-]
+];
 
 const Header: FC = () => {
   const currentUrl = usePathname();
+  const headerPanelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (headerPanelRef.current) {
+      const activeLink = links.find(item => currentUrl === item.link);
+      if (activeLink) {
+        headerPanelRef.current.style.background = activeLink.bgColor;
+        headerPanelRef.current.style.border = "none"; // Hides the border
+      } else {
+        headerPanelRef.current.style.border = ""; // Resets border if no active link
+      }
+    }
+  }, [currentUrl]);
+
   return (
-    <div className=' flex items-center justify-between relative my-1 sm:my-2'>
+    <div className='flex items-center justify-between relative my-1 sm:my-2'>
       <div className='hidden sm:block'>
-        <Image src={LOGO} width={360} className='hidden lg:block ml-[85px] ' alt='Logo' />
+        <Image src={LOGO} width={360} className='hidden lg:block ml-[85px]' alt='Logo' />
       </div>
 
-      <div className="panel border-2 border-text-color rounded-full bg-white py-1 sm:py-3 px-4 sm:px-8 flex items-center justify-center gap-5 sm:gap-10 ">
+      <div
+        ref={headerPanelRef}
+        className="panel border-2 border-text-color rounded-full bg-white py-1 sm:py-3 px-4 sm:px-8 flex items-center justify-center gap-5 sm:gap-10"
+      >
         {links.map((item, index) => {
-          const newStyle = currentUrl === item.link ? "text-[#5C76FF] font-bold" : "font-normal";
+          const newStyle = currentUrl === item.link
+            ? `text-[${item.textColor}] font-bold`
+            : "font-normal";
           return (
             <Link
               href={item.link}
@@ -50,8 +78,8 @@ const Header: FC = () => {
 
       <div className='flex items-center justify-center mr-2 sm:mr-10 px-1 sm:px-3 gap-3'>
         <Image src={SEARCHICON} className='hidden sm:block w-5 h-5 hover:cursor-pointer' alt='search' />
-        <DefaultButton className='text-xs sm:text-[20px] '>Sign Up</DefaultButton>
-        <DefaultButton className='max-w-3 '>&nbsp;</DefaultButton>
+        <DefaultButton className='text-xs sm:text-[20px]'>Sign Up</DefaultButton>
+        <DefaultButton className='max-w-3'>&nbsp;</DefaultButton>
       </div>
     </div>
   );
