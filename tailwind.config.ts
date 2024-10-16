@@ -16,7 +16,7 @@ const config: Config = {
         foreground: "var(--foreground)",
         "def-color": "#F3F8FE",
         "text-color": "#475467",
-      },
+      }
     },
     fontFamily: {
       inter: ["Inter", "sans-serif"],

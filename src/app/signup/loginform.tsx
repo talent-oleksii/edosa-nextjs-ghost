@@ -21,7 +21,7 @@ const LoginForm: React.FC = () => {
   const [password, setPassword] = useState<string>('');
   const [rememberMe, setRememberMe] = useState(false);
 
-  const accessToken = '670f9065ce0bff0001a0234b:d9dddd9560e4dffa9426e2b0876116981da0f361e3ddb368afe8a369929c3613';
+  const accessToken = '670f9065ce0bff0001a0234b:0678735ef8c4cd6ee138437132f2c8ca736f7830096110b64170f6ccfeb78a79';
   let [id, secret] = accessToken.split(':');
 
   const addMemberToGhost = async () => {
@@ -36,7 +36,7 @@ const LoginForm: React.FC = () => {
         body: JSON.stringify({
           members: [
             {
-              email: 'sourabh@choraria.io',
+              email: 'finish@finish.io',
             },
           ],
         }),
@@ -44,16 +44,45 @@ const LoginForm: React.FC = () => {
 
       const data = await response.json();
 
-      console.log("======== Statu - Response ==========")
+      console.log("======== Statu - create Member ==========")
       console.log('Status:', response.status);
       console.log('Response:', JSON.stringify(data, null, 2));
       console.log("====================================");
-      
+
       // alert(`Status: ${response.status}\nResponse: ${JSON.stringify(data, null, 2)}`);
     } catch (error) {
       console.error('Error:', error);
     }
   };
+
+  const loginMember = async () => {
+    try {
+      const jwt = await createJwt();
+      const response = await fetch(`${API_URL}/ghost/api/admin/session/`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Ghost ${jwt}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: 'finish@finish.io',
+          password: 'Prettyguyb!rth!s128'
+        }),
+      });
+
+      const data = await response.json();
+
+      console.log("======== Statu - Login Member ==========")
+      console.log('Status:', response.status);
+      console.log('Response:', JSON.stringify(data, null, 2));
+      console.log("====================================");
+
+      // alert(`Status: ${response.status}\nResponse: ${JSON.stringify(data, null, 2)}`);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
 
   const createJwt = async (): Promise<string> => {
     const header = btoa(
@@ -102,7 +131,7 @@ const LoginForm: React.FC = () => {
     return `${header}.${payload}.${signatureString}`;
   };
 
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -190,6 +219,8 @@ const LoginForm: React.FC = () => {
           </p>
         </form>
         <button onClick={addMemberToGhost}>addMemberToGhost</button>
+        <hr />
+        <button onClick={loginMember}>loginMember</button>
         {error && <p>error</p>}
       </div>
       <div className='bg-[#F2FAEC] mt-4 sm:w-3/4 rounded-2xl h-[700px] sm:ml-10'>
