@@ -6,6 +6,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 import error from 'next/error';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
+import jwt from 'jsonwebtoken';
 
 interface MyJwtPayload extends JwtPayload {
   email: string;
@@ -21,10 +22,10 @@ const LoginForm: React.FC = () => {
   const [password, setPassword] = useState<string>('');
   const [rememberMe, setRememberMe] = useState(false);
 
-  const accessToken = '670f9065ce0bff0001a0234b:0678735ef8c4cd6ee138437132f2c8ca736f7830096110b64170f6ccfeb78a79';
+  const accessToken = '64be7a99a7dd040001d08613:364e9784bcc9a4440432acb5837655adba0ed2dc84c2dfe0c5c69aff01fc1803';
   let [id, secret] = accessToken.split(':');
 
-  const addMemberToGhost = async () => {
+    const addMemberToGhost = async () => {
     try {
       const jwt = await createJwt();
       const response = await fetch(`${API_URL}/ghost/api/admin/members/`, {
@@ -36,7 +37,7 @@ const LoginForm: React.FC = () => {
         body: JSON.stringify({
           members: [
             {
-              email: 'finish@finish.io',
+              email: '123@gmail.com',
             },
           ],
         }),
@@ -55,6 +56,7 @@ const LoginForm: React.FC = () => {
     }
   };
 
+  
   const loginMember = async () => {
     try {
       const jwt = await createJwt();
@@ -65,7 +67,7 @@ const LoginForm: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: 'finish@finish.io',
+          email: 'oleksiikaravanov@gmail.com',
           password: 'Prettyguyb!rth!s128'
         }),
       });
@@ -130,6 +132,8 @@ const LoginForm: React.FC = () => {
 
     return `${header}.${payload}.${signatureString}`;
   };
+
+  
 
 
   const handleSubmit = async (e: React.FormEvent) => {
