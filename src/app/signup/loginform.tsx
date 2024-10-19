@@ -22,10 +22,11 @@ const LoginForm: React.FC = () => {
   const [password, setPassword] = useState<string>('');
   const [rememberMe, setRememberMe] = useState(false);
 
-  const accessToken = '64be7a99a7dd040001d08613:364e9784bcc9a4440432acb5837655adba0ed2dc84c2dfe0c5c69aff01fc1803';
+  const accessToken = '6712a32debe47a288c807a9e:f88942cad12106f3aad2041a5ec7e19819247adac3757614b93863bf14f20d8c';
   let [id, secret] = accessToken.split(':');
+  
 
-    const addMemberToGhost = async () => {
+  const addMemberToGhost = async () => {
     try {
       const jwt = await createJwt();
       const response = await fetch(`${API_URL}/ghost/api/admin/members/`, {
@@ -35,11 +36,7 @@ const LoginForm: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          members: [
-            {
-              email: '123@gmail.com',
-            },
-          ],
+          members: [{email: email}]
         }),
       });
 
@@ -50,13 +47,12 @@ const LoginForm: React.FC = () => {
       console.log('Response:', JSON.stringify(data, null, 2));
       console.log("====================================");
 
-      // alert(`Status: ${response.status}\nResponse: ${JSON.stringify(data, null, 2)}`);
     } catch (error) {
       console.error('Error:', error);
     }
   };
 
-  
+
   const loginMember = async () => {
     try {
       const jwt = await createJwt();
@@ -67,8 +63,8 @@ const LoginForm: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: 'oleksiikaravanov@gmail.com',
-          password: 'Prettyguyb!rth!s128'
+          email: 'ggg@gmail.com',
+          password: '123'
         }),
       });
 
@@ -84,6 +80,7 @@ const LoginForm: React.FC = () => {
       console.error('Error:', error);
     }
   };
+
 
 
   const createJwt = async (): Promise<string> => {
@@ -128,14 +125,15 @@ const LoginForm: React.FC = () => {
 
     const signature = await crypto.subtle.sign('HMAC', importedKey, toSign);
     const signatureArray = Array.from(new Uint8Array(signature));
-    const signatureString = btoa(String.fromCharCode(...signatureArray)).replace(/=+$/, '');
+    const signatureString = btoa(String.fromCharCode(...signatureArray))
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
 
     return `${header}.${payload}.${signatureString}`;
   };
 
   
-
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
