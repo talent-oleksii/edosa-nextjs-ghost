@@ -1,11 +1,14 @@
 'use client';
 import { FC, useEffect, useRef } from 'react';
+import React from 'react';
 import LOGO from '@/public/assets/images/logo.png';
 import SEARCHICON from '@/public/assets/svg/search.svg';
 import DefaultButton from './components/buttons/DefaultButton';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { getCookie, setCookie } from 'typescript-cookie'
+
 
 const links: Array<{ text: string, link: string, textColor: string, bgColor: string }> = [
   {
@@ -49,6 +52,12 @@ const Header: FC = () => {
       }
     }
   }, [currentUrl]);
+
+
+  React.useEffect(() => {
+    console.log('COOKIE')
+    console.log(getCookie('OTZ'))
+  }, [])
 
   return (
     <div className='flex items-center justify-between relative my-1 sm:my-2'>

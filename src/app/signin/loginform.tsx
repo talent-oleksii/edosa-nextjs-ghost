@@ -29,6 +29,17 @@ const ghostAPI = setupGhostApi({
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // Runs only on the client-side
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    // Prevents SSR window-related issues
+    return null;
+  }
 
   // Sign in
   const onLogin = async () => {
@@ -54,6 +65,18 @@ const LoginForm: React.FC = () => {
       console.log(response);
 
       setEmail('');
+
+      toast.success(`Please, check your Email's Inbox.`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce
+      });
 
     } catch (error) {
         console.error("Error: ", error);

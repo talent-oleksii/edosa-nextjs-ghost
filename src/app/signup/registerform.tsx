@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 import error from 'next/error';
@@ -29,6 +29,17 @@ const RegisterForm: React.FC = () => {
   
   const [email, setEmail] = useState<string>('');
   const [username, setUsername] = useState<string>('');
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // Runs only on the client-side
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    // Prevents SSR window-related issues
+    return null;
+  }
 
   // on Sign Up
   const onSignUp = async () => {
@@ -52,7 +63,20 @@ const RegisterForm: React.FC = () => {
       console.log('======== sign in =========')
       console.log(response);
 
+      setUsername('');
       setEmail('');
+
+      toast.success(`Please, check your Email's Inbox.`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce
+      });
 
     } catch (error) {
         console.error("Error: ", error);
