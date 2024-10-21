@@ -56,7 +56,30 @@ const Header: FC = () => {
 
   React.useEffect(() => {
     console.log('COOKIE')
-    console.log(getCookie('OTZ'))
+    // console.log(getCookie('OTZ'))
+
+    function getCookieValue(cookieName: string) {
+      // Split document.cookie into individual cookie strings
+      const cookies = document.cookie.split('; ');
+    
+      // Loop through the cookies to find the one with the specified name
+      for (let cookie of cookies) {
+        // Split the cookie string into name and value
+        const [name, value] = cookie.split('=');
+    
+        // Check if the cookie name matches the desired cookie
+        if (name === cookieName) {
+          return decodeURIComponent(value); // Decode and return the cookie value
+        }
+      }
+    
+      // Return null if the cookie is not found
+      return null;
+    }
+    
+    const myCookieValue = getCookieValue('ghost-members-ssr.sig');
+    console.log(myCookieValue); // Outputs the value of 'myCookieName' cookie
+
   }, [])
 
   return (

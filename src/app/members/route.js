@@ -25,7 +25,7 @@ export async function GET(request) {
       // const data = await response.text();
       const session = response.headers.get('Set-Cookie');
       // const res = NextResponse.json({ message: 'Verification successful' + session }, {status: 302}, {redirect: '/signup_success'});
-      const res = NextResponse.redirect('http://localhost:3000/signup?submit=true', 302);
+      const res = NextResponse.redirect('https://edosa-nextjs-ghost.onrender.com/signup?submit=true', 302);
       if (session) {
         res.headers.set('Set-Cookie', session);
       }
