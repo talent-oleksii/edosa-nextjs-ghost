@@ -58,7 +58,7 @@ const LoginForm: React.FC = () => {
     } catch (error) {
         console.error("Error: ", error);
     }
-};
+  };
   
   const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();

@@ -30,137 +30,39 @@ const RegisterForm: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [username, setUsername] = useState<string>('');
 
-  const accessToken = '67165a10a33f063b5c61ceab:1dcdf8606ca52fb9e3a26a99c4270d1284ab4dcf83d146dccffd5a8bffd18168';
-  let [id, secret] = accessToken.split(':');
-  
-  // generate token
-  const createJwt = async (): Promise<string> => {
-    const header = btoa(
-      JSON.stringify({
-        alg: 'HS256',
-        kid: id,
-        typ: 'JWT',
-      })
-    ).replace(/=+$/, '');
-
-    const now = Date.now();
-    let expires = new Date(now);
-    expires.setMinutes(expires.getMinutes() + 5);
-
-    const payload = btoa(
-      JSON.stringify({
-        exp: Math.round(expires.getTime() / 1000),
-        iat: Math.round(now / 1000),
-        aud: '/admin/',
-      })
-    ).replace(/=+$/, '');
-
-    const secretBinary = secret
-      .match(/.{2}/g)
-      ?.map(e =>
-        parseInt(e[0], 16).toString(2).length === 4
-          ? parseInt(e, 16) - 256
-          : parseInt(e, 16)
-      ) as number[];
-
-    const toSign = new TextEncoder().encode(`${header}.${payload}`);
-    const key = new Uint8Array(secretBinary);
-
-    const importedKey = await crypto.subtle.importKey(
-      'raw',
-      key.buffer,
-      { name: 'HMAC', hash: { name: 'SHA-256' } },
-      false,
-      ['sign']
-    );
-
-    const signature = await crypto.subtle.sign('HMAC', importedKey, toSign);
-    const signatureArray = Array.from(new Uint8Array(signature));
-    const signatureString = btoa(String.fromCharCode(...signatureArray))
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=+$/, '');
-
-    return `${header}.${payload}.${signatureString}`;
-  };
-
   // on Sign Up
-  const onSignUp = async() => {
+  const onSignUp = async () => {
     try {
-      const jwt = await createJwt();
-      const response = await fetch(`${API_URL}/ghost/api/admin/members/`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Ghost ${jwt}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          members: [{ name: username, email: email }]
-        }),
-      });
+      const token = await ghostAPI.member.getIntegrityToken();
+      const response = await ghostAPI.member.sendMagicLink({
+          email: email,
+          emailType: 'signup',
+          labels: null,
+          name: username,
+          oldEmail: null,
+          // newsletters: [{id: '62710516508d640031918934'}, {id: '65142ccd41873e0001a996f9'}],
+          newsletters: null,
+          redirect: false,
+          integrityToken: token,
+          phonenumber: null,
+          customUrlHistory: null,
+          autoRedirect: false
+      })
 
-      const data = await response.json();
+      console.log('======== sign in =========')
+      console.log(response);
 
-      console.log("======== Status - create Member ==========")
-      console.log('Status:', response.status);
-      console.log('Response:', JSON.stringify(data, null, 2));
-
-      setUsername('');
       setEmail('');
 
-      switch(response.status) {
-          case 201:
-                toast.success(`You sign up successfully!`, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                    transition: Bounce
-                });
-              break;
-          case 422:
-              toast.warn(`You have already signed up!`, {
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: true,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "colored",
-                  transition: Bounce
-              });
-            break;
-            case 404:
-              toast.error(`Sorry, some issues occur!`, {
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: true,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "colored",
-                  transition: Bounce
-              });
-            break;
-          default:
-            break;
-      }
     } catch (error) {
-      console.error('Error:', error);
+        console.error("Error: ", error);
     }
-  }
+  };
 
 
   const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
   };
-
 
   return (
     <div className='flex flex-col sm:flex-row sm:row-span-2'>
