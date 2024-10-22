@@ -80,13 +80,23 @@ const LoginForm: React.FC = () => {
 
     } catch (error) {
         console.error("Error: ", error);
+        toast.error(`${error}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce
+        });
     }
   };
   
   const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
   };
-
 
   return (
     <div className='flex flex-col sm:flex-row sm:row-span-2'>
@@ -179,9 +189,8 @@ const LoginForm: React.FC = () => {
         {/* {error && <p>error</p>} */}
       </div>
       <div className='bg-[#F2FAEC] mt-4 sm:w-3/4 rounded-2xl h-[700px] sm:ml-10'>
-
+        
       </div>
-
       <ToastContainer />
     </div>
   );

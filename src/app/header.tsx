@@ -7,7 +7,6 @@ import DefaultButton from './components/buttons/DefaultButton';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { getCookie, setCookie } from 'typescript-cookie'
 
 
 const links: Array<{ text: string, link: string, textColor: string, bgColor: string }> = [
@@ -52,35 +51,6 @@ const Header: FC = () => {
       }
     }
   }, [currentUrl]);
-
-
-  React.useEffect(() => {
-    console.log('COOKIE')
-    // console.log(getCookie('OTZ'))
-
-    function getCookieValue(cookieName: string) {
-      // Split document.cookie into individual cookie strings
-      const cookies = document.cookie.split('; ');
-    
-      // Loop through the cookies to find the one with the specified name
-      for (let cookie of cookies) {
-        // Split the cookie string into name and value
-        const [name, value] = cookie.split('=');
-    
-        // Check if the cookie name matches the desired cookie
-        if (name === cookieName) {
-          return decodeURIComponent(value); // Decode and return the cookie value
-        }
-      }
-    
-      // Return null if the cookie is not found
-      return null;
-    }
-    
-    const myCookieValue = getCookieValue('ghost-members-ssr.sig');
-    console.log(myCookieValue); // Outputs the value of 'myCookieName' cookie
-
-  }, [])
 
   return (
     <div className='flex items-center justify-between relative my-1 sm:my-2'>

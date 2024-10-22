@@ -80,6 +80,17 @@ const RegisterForm: React.FC = () => {
 
     } catch (error) {
         console.error("Error: ", error);
+        toast.error(`${error}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce
+        });
     }
   };
 

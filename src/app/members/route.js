@@ -3,6 +3,8 @@ import { redirect } from 'next/dist/server/api-utils';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
+const PUBLIC_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
+
 export async function GET(request) {
   try {
     // const { token } = await request.json();
@@ -25,7 +27,7 @@ export async function GET(request) {
       // const data = await response.text();
       const session = response.headers.get('Set-Cookie');
       // const res = NextResponse.json({ message: 'Verification successful' + session }, {status: 302}, {redirect: '/signup_success'});
-      const res = NextResponse.redirect('https://edosa-nextjs-ghost.onrender.com/signup?submit=true', 302);
+      const res = NextResponse.redirect(`${PUBLIC_DOMAIN}/signup?submit=true`, 302);
       if (session) {
         res.headers.set('Set-Cookie', session);
       }
