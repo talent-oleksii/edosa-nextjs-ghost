@@ -68,6 +68,7 @@ const Header: FC = () => {
                       credentials: 'include' // Include cookies, including HttpOnly ones
                   });
       const data = await response.json();
+      console.log(data)
       res.status(response.status).json(data);
     }
     console.log(getJwtToken)
