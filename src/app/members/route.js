@@ -27,9 +27,10 @@ export async function GET(request) {
       // const data = await response.text();
       const session = response.headers.get('Set-Cookie');
       // const res = NextResponse.json({ message: 'Verification successful' + session }, {status: 302}, {redirect: '/signup_success'});
-      const res = NextResponse.redirect(`${PUBLIC_DOMAIN}/signup?submit=true`, 302);
+      const res = NextResponse.redirect(`${PUBLIC_DOMAIN}/`, 302);
       if (session) {
-        res.headers.set('Set-Cookie', session);
+        const cookieOptions = 'Path=/; HttpOnly; Secure; SameSite=None'; // Ensure Secure and SameSite=None for cross-origin
+        res.headers.set('Set-Cookie', `${session}; ${cookieOptions}`);
       }
       return res; // Return the response with Set-Cookie header
     } else if (response.ok) {

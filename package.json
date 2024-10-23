@@ -22,6 +22,7 @@
     "dotenv": "^16.4.5",
     "ghost-auth": "^2.0.7",
     "html-react-parser": "^5.1.18",
+    "http-proxy-middleware": "^3.0.3",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "next": "14.2.13",

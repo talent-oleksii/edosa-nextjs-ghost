@@ -7,6 +7,10 @@ import DefaultButton from './components/buttons/DefaultButton';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import axios from 'axios';
+import { cookies, headers } from 'next/headers';
+
+const API_URL = process.env.NEXT_PUBLIC_GHOST_API_URL;
 
 
 const links: Array<{ text: string, link: string, textColor: string, bgColor: string }> = [
@@ -52,40 +56,59 @@ const Header: FC = () => {
     }
   }, [currentUrl]);
 
+  useEffect(() => {
+    const getJwtToken = async () => {
+      const res = await fetch(`${API_URL}/members/api/session`, {
+                      method: 'GET',
+                      credentials: 'include' // Include cookies, including HttpOnly ones
+                  });
+      console.log('getJwtToken: ', res.json());
+    }
+
+    // getJwtToken();
+  }, [])
+
   return (
-    <div className='flex items-center justify-between relative my-1 sm:my-2'>
-      <div className='hidden sm:block'>
+    <>
+      <div className='block lg:hidden flex justify-center my-2 w-full'>
         <Link href="/">
-          <Image src={LOGO} width={360} className='hidden lg:block ml-[85px]' alt='Logo' />
+          <Image src={LOGO} width={250} className='block lg:hidden' alt='Logo' />
         </Link>
       </div>
+      <div className='flex items-center justify-between relative my-1 sm:my-2'>
+        <div className='hidden sm:block'>
+          <Link href="/">
+            <Image src={LOGO} width={360} className='hidden lg:block ml-[85px]' alt='Logo' />
+          </Link>
+        </div>
 
-      <div
-        ref={headerPanelRef}
-        className="panel border-2 border-text-color rounded-full bg-white py-1 sm:py-3 px-4 sm:px-8 flex items-center justify-center gap-5 sm:gap-10"
-      >
-        {links.map((item, index) => {
-          const newStyle = currentUrl === item.link
-            ? `text-[${item.textColor}] font-bold`
-            : "font-normal";
-          return (
-            <Link
-              href={item.link}
-              key={index}
-              className={`text-xs sm:text-[20px] font-inter ${newStyle}`}
-            >
-              {item.text}
-            </Link>
-          );
-        })}
-      </div>
+        <div
+          ref={headerPanelRef}
+          className="panel border-2 border-text-color rounded-full bg-white py-1 sm:py-3 px-4 sm:px-8 flex items-center justify-center gap-5 sm:gap-10"
+        >
+          {links.map((item, index) => {
+            const newStyle = currentUrl === item.link
+              ? `text-[${item.textColor}] font-bold`
+              : "font-normal";
+            return (
+              <Link
+                href={item.link}
+                key={index}
+                className={`text-xs sm:text-[20px] font-inter ${newStyle}`}
+              >
+                {item.text}
+              </Link>
+            );
+          })}
+        </div>
 
-      <div className='flex items-center justify-center mr-2 sm:mr-10 px-1 sm:px-3 gap-3'>
-        <Image src={SEARCHICON} className='hidden sm:block w-5 h-5 hover:cursor-pointer' alt='search' />
-        <Link href='./signup'><DefaultButton className='text-xs sm:text-[20px]'>Sign Up</DefaultButton></Link>
-        <DefaultButton className='max-w-3'>&nbsp;</DefaultButton>
+        <div className='flex items-center justify-center mr-2 sm:mr-10 px-1 sm:px-3 gap-3'>
+          <Image src={SEARCHICON} className='hidden sm:block w-5 h-5 hover:cursor-pointer' alt='search' />
+          <Link href='/signin'><DefaultButton className='text-xs sm:text-[20px]'>Sign Up</DefaultButton></Link>
+          <DefaultButton className='max-w-3'>&nbsp;</DefaultButton>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

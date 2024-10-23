@@ -287,8 +287,10 @@ function setupGhostApi({siteUrl = typeof window !== 'undefined' ? window.locatio
                 body: JSON.stringify(body)
             });
 
+            console.log('Response => ', res);
+
             if (res.ok) {
-                return 'Success';
+                return res;
             } else {
                 // Try to read body error message that is human readable and should be shown to the user
                 const humanError = await HumanReadableError.fromApiResponse(res);

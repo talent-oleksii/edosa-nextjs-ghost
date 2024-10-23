@@ -1,6 +1,8 @@
 'use client';
 import React, { FC, ChangeEvent, useState } from "react";
 import DefaultButton from "../components/buttons/DefaultButton";
+import Link from "next/link";
+
 const BuildPackage: FC = () => {
   const [email, setEmail] = useState<string>(""); // Specify the state type as string
 
@@ -16,8 +18,10 @@ const BuildPackage: FC = () => {
       <div className="text-base sm:text-xl leading-6 sm:leading-8 mt-2 sm:mt-8 text-text-color">
         Don’t miss out on the latest insights, and exclusive content from Edosa Odaro.<br /> Subscribe to the newsletter and get valuable information directly in your inbox.
       </div>
-      <div className="relative flex w-full max-w-[24rem] mt-5">
-        <DefaultButton className="w-full py-2">View All Services</DefaultButton>
+      <div className="relative flex justify-center w-full max-w-[24rem] mt-5">
+        <Link href='/learn/allPackages'>
+            <DefaultButton className="w-full py-2">View All Services</DefaultButton>
+        </Link>
       </div>
     </div>
   );
