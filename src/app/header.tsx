@@ -65,7 +65,8 @@ const Header: FC = () => {
       console.log('getJwtToken: ', res.json());
     }
 
-    // getJwtToken();
+    const token = getJwtToken();
+    console.log(token);
   }, [])
 
   return (
