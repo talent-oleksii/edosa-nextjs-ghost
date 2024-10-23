@@ -59,21 +59,31 @@ const Header: FC = () => {
 
   useEffect(() => {
     console.log("========================")
-    const getJwtToken = async (req: NextApiRequest, res: NextApiResponse) => {
-      console.log('cookie:', req.headers.cookie)
+    // const getJwtToken = async (req: NextApiRequest, res: NextApiResponse) => {
+    //   console.log('cookie:', req.headers.cookie)
+    //   const response = await fetch(`${API_URL}/members/api/session`, {
+    //                   method: 'GET',
+    //                   headers: {
+    //                       'Content-Type': 'application/json',
+    //                       cookie: req.headers.cookie || '',
+    //                   },
+    //                   credentials: 'include' // Include cookies, including HttpOnly ones
+    //               });
+    //   const data = await response.json();
+    //   console.log('token:', data)
+    //   res.status(response.status).json(data);
+    // }
+    // console.log(getJwtToken)
+
+    const res = async() => {
       const response = await fetch(`${API_URL}/members/api/session`, {
-                      method: 'GET',
-                      headers: {
-                          'Content-Type': 'application/json',
-                          cookie: req.headers.cookie || '',
-                      },
-                      credentials: 'include' // Include cookies, including HttpOnly ones
-                  });
-      const data = await response.json();
-      console.log('token:', data)
-      res.status(response.status).json(data);
+          method: 'GET',
+          credentials: 'include'
+      })
+      return response;
     }
-    console.log(getJwtToken)
+
+    console.log(res)
   }, [])
 
   return (
