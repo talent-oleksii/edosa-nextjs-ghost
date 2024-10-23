@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import axios from 'axios';
 import { cookies, headers } from 'next/headers';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const API_URL = process.env.NEXT_PUBLIC_GHOST_API_URL;
 
@@ -57,27 +58,30 @@ const Header: FC = () => {
   }, [currentUrl]);
 
   useEffect(() => {
-    const getJwtToken = async () => {
-      const res = await fetch(`${API_URL}/members/api/session`, {
+    const getJwtToken = async (req: NextApiRequest, res: NextApiResponse) => {
+      const response = await fetch(`${API_URL}/members/api/session`, {
                       method: 'GET',
+                      headers: {
+                        'Content-Type': 'application/json',
+                        cookie: req.headers.cookie || '',
+                      },
                       credentials: 'include' // Include cookies, including HttpOnly ones
                   });
-      console.log('getJwtToken: ', res.json());
+      const data = await response.json();
+      res.status(response.status).json(data);
     }
-
-    const token = getJwtToken();
-    console.log(token);
+    console.log(getJwtToken)
   }, [])
 
   return (
     <>
-      <div className='block lg:hidden flex justify-center my-2 w-full'>
+      {/* <div className='block lg:hidden flex justify-center my-2 w-full'>
         <Link href="/">
           <Image src={LOGO} width={250} className='block lg:hidden' alt='Logo' />
         </Link>
-      </div>
+      </div> */}
       <div className='flex items-center justify-between relative my-1 sm:my-2'>
-        <div className='hidden sm:block'>
+        <div className='hidden lg:block'>
           <Link href="/">
             <Image src={LOGO} width={360} className='hidden lg:block ml-[85px]' alt='Logo' />
           </Link>
