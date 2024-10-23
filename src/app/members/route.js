@@ -2,6 +2,7 @@ import ghost from '@material-tailwind/react/theme/components/timeline/timelineIc
 import { redirect } from 'next/dist/server/api-utils';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import createProxyMiddleware from './proxy';
 
 const PUBLIC_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
 
