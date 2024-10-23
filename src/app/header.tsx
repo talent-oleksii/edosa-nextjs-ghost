@@ -80,10 +80,10 @@ const Header: FC = () => {
           method: 'GET',
           credentials: 'include'
       })
-      return response;
+      console.log(response)
     }
 
-    console.log(res)
+    res();
   }, [])
 
   return (
