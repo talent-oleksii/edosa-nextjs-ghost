@@ -59,17 +59,17 @@ const Header: FC = () => {
 
   useEffect(() => {
     const getJwtToken = async (req: NextApiRequest, res: NextApiResponse) => {
-      console.log(req.headers.cookie)
+      console.log('cookie:', req.headers.cookie)
       const response = await fetch(`${API_URL}/members/api/session`, {
                       method: 'GET',
                       headers: {
-                        'Content-Type': 'application/json',
-                        cookie: req.headers.cookie || '',
+                          'Content-Type': 'application/json',
+                          cookie: req.headers.cookie || '',
                       },
                       credentials: 'include' // Include cookies, including HttpOnly ones
                   });
       const data = await response.json();
-      console.log(data)
+      console.log('token:', data)
       res.status(response.status).json(data);
     }
     console.log(getJwtToken)
