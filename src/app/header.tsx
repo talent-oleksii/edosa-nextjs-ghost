@@ -58,6 +58,7 @@ const Header: FC = () => {
   }, [currentUrl]);
 
   useEffect(() => {
+    console.log("========================")
     const getJwtToken = async (req: NextApiRequest, res: NextApiResponse) => {
       console.log('cookie:', req.headers.cookie)
       const response = await fetch(`${API_URL}/members/api/session`, {
