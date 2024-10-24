@@ -7,9 +7,6 @@ import DefaultButton from './components/buttons/DefaultButton';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import axios from 'axios';
-import { cookies, headers } from 'next/headers';
-import { NextApiRequest, NextApiResponse } from 'next';
 
 const API_URL = process.env.NEXT_PUBLIC_GHOST_API_URL;
 
@@ -58,29 +55,23 @@ const Header: FC = () => {
   }, [currentUrl]);
 
   useEffect(() => {
-    console.log("========================")
-    // const getJwtToken = async (req: NextApiRequest, res: NextApiResponse) => {
-    //   console.log('cookie:', req.headers.cookie)
-    //   const response = await fetch(`${API_URL}/members/api/session`, {
-    //                   method: 'GET',
-    //                   headers: {
-    //                       'Content-Type': 'application/json',
-    //                       cookie: req.headers.cookie || '',
-    //                   },
-    //                   credentials: 'include' // Include cookies, including HttpOnly ones
-    //               });
-    //   const data = await response.json();
-    //   console.log('token:', data)
-    //   res.status(response.status).json(data);
-    // }
-    // console.log(getJwtToken)
 
     const res = async() => {
-      const response = await fetch(`${API_URL}/members/api/session`, {
+      
+      fetch(`/members/api/session`, {
           method: 'GET',
-          credentials: 'include'
+          credentials: 'include',
       })
-      console.log(response)
+      .then(res => {
+          if (!res.ok) {
+              throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          return res.text();
+      })
+      .then(data => console.log('==========', data))
+      .catch(err => console.error('Error:', err));
+    
+      
     }
 
     res();
@@ -88,11 +79,11 @@ const Header: FC = () => {
 
   return (
     <>
-      {/* <div className='block lg:hidden flex justify-center my-2 w-full'>
+      <div className='block lg:hidden flex justify-center my-2 w-full'>
         <Link href="/">
           <Image src={LOGO} width={250} className='block lg:hidden' alt='Logo' />
         </Link>
-      </div> */}
+      </div>
       <div className='flex items-center justify-between relative my-1 sm:my-2'>
         <div className='hidden lg:block'>
           <Link href="/">
