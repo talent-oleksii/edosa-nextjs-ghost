@@ -1,12 +1,16 @@
 'use client';
-import { FC, useEffect, useRef } from 'react';
+import { FC, useState, useEffect, useRef } from 'react';
 import React from 'react';
+import axios from 'axios';
+import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
+import { jwtDecode } from 'jwt-decode';
+import { toast, ToastContainer, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import LOGO from '@/public/assets/images/logo.png';
 import SEARCHICON from '@/public/assets/svg/search.svg';
 import DefaultButton from './components/buttons/DefaultButton';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 
 const API_URL = process.env.NEXT_PUBLIC_GHOST_API_URL;
 
@@ -38,9 +42,19 @@ const links: Array<{ text: string, link: string, textColor: string, bgColor: str
   },
 ];
 
+interface userStyle {
+    aud: string,
+    exp: number,
+    iat: number,
+    iss: string,
+    kid: string,
+    sub: string
+}
+
 const Header: FC = () => {
   const currentUrl = usePathname();
   const headerPanelRef = useRef<HTMLDivElement>(null);
+  const [user, setUser] = useState<userStyle>();
 
   useEffect(() => {
     if (headerPanelRef.current) {
@@ -56,25 +70,29 @@ const Header: FC = () => {
 
   useEffect(() => {
 
-    const res = async() => {
-      
-      fetch(`/members/api/session`, {
-          method: 'GET',
-          credentials: 'include',
-      })
-      .then(res => {
-          if (!res.ok) {
-              throw new Error(`HTTP error! status: ${res.status}`);
-          }
-          return res.text();
-      })
-      .then(data => console.log('==========', data))
-      .catch(err => console.error('Error:', err));
-    
-      
-    }
+    (async () => {
+      try {
+          const res = await fetch('/api/members');
+          const token = await res.text();
+          setUser(jwtDecode(token));
 
-    res();
+          toast.success(`Welcome back!`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Bounce,
+            style: {width: '250px', marginLeft: '50px'}
+          });
+      } catch (err) {
+          console.log(err);
+      }
+    })();
+
   }, [])
 
   return (
@@ -113,9 +131,18 @@ const Header: FC = () => {
 
         <div className='flex items-center justify-center mr-2 sm:mr-10 px-1 sm:px-3 gap-3'>
           <Image src={SEARCHICON} className='hidden sm:block w-5 h-5 hover:cursor-pointer' alt='search' />
-          <Link href='/signin'><DefaultButton className='text-xs sm:text-[20px]'>Sign Up</DefaultButton></Link>
+
+            {
+              !user ? (
+                <Link href='/signin'><DefaultButton className='text-xs sm:text-[20px]'>Sign Up</DefaultButton></Link>
+              ) : (
+                <Link href='/'><DefaultButton className='text-xs sm:text-[20px]'>{user.sub.split('@')[0]}</DefaultButton></Link>
+              )
+            }  
+        
           <DefaultButton className='max-w-3'>&nbsp;</DefaultButton>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

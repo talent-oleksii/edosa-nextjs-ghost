@@ -3,6 +3,7 @@ import { redirect } from 'next/dist/server/api-utils';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
+const API_URL = process.env.NEXT_PUBLIC_GHOST_API_URL;
 const PUBLIC_DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
 
 export async function GET(request) {
@@ -26,11 +27,13 @@ export async function GET(request) {
     if (response.status == 301 || response.status == 302) {
       // const data = await response.text();
       const session = response.headers.get('Set-Cookie');
+
       // const res = NextResponse.json({ message: 'Verification successful' + session }, {status: 302}, {redirect: '/signup_success'});
       const res = NextResponse.redirect(`${PUBLIC_DOMAIN}/`, 302);
       if (session) {
         const cookieOptions = 'Path=/; HttpOnly; Secure; SameSite=None'; // Ensure Secure and SameSite=None for cross-origin
         res.headers.set('Set-Cookie', `${session}; ${cookieOptions}`);
+        // res.headers.set('Set-Cookie', session.replace('samesite=lax; secure; httponly', '').replace('samesite=lax; secure; httponly', ''));
       }
       return res; // Return the response with Set-Cookie header
     } else if (response.ok) {

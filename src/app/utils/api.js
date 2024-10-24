@@ -287,8 +287,6 @@ function setupGhostApi({siteUrl = typeof window !== 'undefined' ? window.locatio
                 body: JSON.stringify(body)
             });
 
-            console.log('Response => ', res);
-
             if (res.ok) {
                 return res;
             } else {
