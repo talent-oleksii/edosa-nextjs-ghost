@@ -55,6 +55,7 @@ const Header: FC = () => {
   const currentUrl = usePathname();
   const headerPanelRef = useRef<HTMLDivElement>(null);
   const [user, setUser] = useState<userStyle>();
+  const hasRun = useRef(false);
 
   useEffect(() => {
     if (headerPanelRef.current) {
@@ -69,6 +70,9 @@ const Header: FC = () => {
   }, [currentUrl]);
 
   useEffect(() => {
+
+    if (hasRun.current) return;
+    hasRun.current = true;
 
     (async () => {
       try {
