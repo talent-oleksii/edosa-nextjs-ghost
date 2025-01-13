@@ -5,7 +5,7 @@ import Footer from '../footer';
 
 const Privacy:FC = () => {
     return (
-        <div>
+        <div className='max-w-[1440px] mx-auto'>
             <Header />
             <div className='mt-10 sm:mt-20 mb-10'>
                 <div className='max-w-[50em] w-full mx-auto'>

@@ -20,7 +20,8 @@ const config: Config = {
         "l-demo-color": "#f3f8fe",
         "r-main-color": "#f15f31",
         "r-demo-color": "#FFF7F4",
-        "m-main-color": "#95da79",
+        // "m-main-color": "#95da79",
+        "m-main-color": "green",
         "m-demo-color": "#f2faec",
         "w-main-color": "#7f56d9",
         "w-demo-color": "#F7F6FF"

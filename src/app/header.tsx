@@ -29,25 +29,25 @@ const links: Array<{ text: string, link: string, textColor: string, bgColor: str
   {
     text: "Learn",
     link: "/learn",
-    textColor: "#5c76ff",
+    textColor: "l-main-color",
     bgColor: "#F3F8FE"
   },
   {
     text: "Read",
     link: "/read",
-    textColor: "#FF6E3E",
+    textColor: "r-main-color",
     bgColor: "#FFF7F4"
   },
   {
     text: "Watch",
     link: "/watch",
-    textColor: "#9E77ED",
+    textColor: "w-main-color",
     bgColor: "#F7F6FF"
   },
   {
     text: "Meet",
     link: "/meet",
-    textColor: "#95DA79",
+    textColor: "m-main-color",
     bgColor: "#F2FAEC"
   },
 ];
@@ -210,7 +210,7 @@ const Header: FC = () => {
                 >
                     {links.map((item, index) => {
                         const newStyle = currentUrl === item.link
-                          ? `text-[${item.textColor}] font-bold`
+                          ? `text-${item.textColor} font-bold`
                           : "font-normal";
                         return (
                           <Link
