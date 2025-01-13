@@ -20,7 +20,16 @@ const LearnStyle: FC = () => {
               const res = await axios.post<TiersResponse>('/api/content/tiers', {
                   payload: '&limit=all&include=monthly_price,benefits'
               });
-              console.log(res.data.tiers)
+              
+              const readyData = [
+                {
+                  title: 'Growth',
+                  header: 'The Million-Dollar AI Advisor: 5 Days to Transform Your Technical Expertise into Strategic Value',
+                  text: "5 Day eMail Course to transform your technical expertise into strategic value in just 5 days through battle-tested frameworks I've used to deliver nine-figure transformations at organisations like AXA, Barclays Group, and AIG.",
+                  
+                }
+              ]
+
               let demoLearnItems: { title: string; header: any; text: any; items: any; buttonStyle: string; backColor: string; border: string; }[] = [];
               res.data.tiers
                 .filter((item: { name: string; }) => TiersNames.includes(item.name))
