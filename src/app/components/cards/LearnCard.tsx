@@ -5,6 +5,7 @@ import DefaultButton from "../buttons/DefaultButton";
 import setupGhostApi from "../../utils/api";
 import { useRouter } from 'next/navigation';
 import Link from "next/link";
+import parse from 'html-react-parser';
 
 const API_URL = process.env.NEXT_PUBLIC_GHOST_API_URL;
 const ADMIN_API_KEY = process.env.NEXT_PUBLIC_GHOST_ADMIN_API_KEY;
@@ -21,7 +22,11 @@ interface LearnCardProps {
     title: string;
     header: string;
     text: string;
+    subTitle: string;
     items: string[];
+    bonus: any,
+    totalValue: string,
+    buttonName: string,
     button: string;
     backColor: string;
     border: string;
@@ -34,7 +39,11 @@ const LearnCard: FC<LearnCardProps> = ({
     title,
     header,
     text,
+    subTitle,
     items,
+    bonus,
+    totalValue,
+    buttonName,
     button,
     backColor,
     border,
@@ -101,17 +110,45 @@ const LearnCard: FC<LearnCardProps> = ({
                         {text}
                     </div>
                 
+                    <div className="text-md text-text-color font-bold px-5 pt-3">{subTitle}</div>
                     <div className={`px-7 mt-2`}>
-                        {items.map((item, index) => {
-                            if (!more) return;
+                        {items.map((item:any, index:number) => {
                             return (
-                                <div key={index} className="flex flex-row">
-                                    <Image src={CHECK} width={24} height={24} alt="checked" />
-                                    <span className="text-sm text-text-color ml-2 my-2">{item}</span>
+                                <div key={index}>
+                                    <div className="flex flex-row">
+                                        <Image src={CHECK} width={24} height={24} alt="checked" />
+                                        <span className="text-sm text-text-color ml-2 my-2">{parse(item.title)}</span>
+                                    </div>
+                                    <div className="text-sm text-text-color pl-[30px]">
+                                        <ul>
+                                            {
+                                                item.subitems.map((el:string, i:number) => {
+                                                    if (!more) return;
+                                                    return (
+                                                        <li key={i} className="my-1">- {el}</li>
+                                                    )
+                                                })
+                                            }
+                                        </ul>
+                                    </div>
                                 </div>
                             )
                         })}
                     </div>
+
+                    <div className="text-md text-text-color px-8 mt-4 mb-2 font-inter font-bold" style={{color: "darkgreen"}}>{bonus.name}</div>
+                    <div className="text-sm text-text-color px-8">{parse(bonus.content)}</div>
+                    <div className="text-sm text-text-color pl-[40px]">
+                        {
+                            bonus.items.map((el:string, index:number) => {
+                                if (!more) return;
+                                return (
+                                    <div key={index} className="my-1">- {el}</div>
+                                )
+                            })
+                        }
+                    </div>
+
                 </div>
                 {/* Flex Div 2 */}
                 <div>
@@ -124,6 +161,9 @@ const LearnCard: FC<LearnCardProps> = ({
                             )
                         }
                     </div>
+                    <div className="text-text-color text-center">
+                        Total Value: <b>{totalValue}</b>
+                    </div>
                     <div className="w-full flex justify-center py-2">
                         <div className="w-5/6">
                             {
@@ -132,25 +172,20 @@ const LearnCard: FC<LearnCardProps> = ({
                                         {
                                             member && member.paid ? (
                                                 <span onClick={onMemberAccess}>
-                                                    <DefaultButton>Member Access</DefaultButton>
+                                                    {/* <DefaultButton>Member Access</DefaultButton> */}
+                                                    <DefaultButton>{buttonName}</DefaultButton>
                                                 </span>
                                             ) : (
-                                                <div className="block sm:flex justify-between">
-                                                    <div className="w-full sm:w-[48%]" onClick={payFunc}>
-                                                        <DefaultButton>SOLD OUT</DefaultButton>
-                                                    </div>
-                                                    <div className="w-full sm:w-[48%] mt-2 sm:mt-0">
-                                                        <DefaultButton className="bg-[#FFF] border border-[#475467]">
-                                                            <span style={{color: '#475467'}}>Join Waiting List</span>
-                                                        </DefaultButton>
-                                                    </div>
+                                                <div className="w-full" onClick={payFunc}>
+                                                    <DefaultButton>{buttonName}</DefaultButton>
                                                 </div>
                                             )
                                         }
                                     </div>
                                 ) : (
                                     <span onClick={onFreeAccess}>
-                                        <DefaultButton>Free Access</DefaultButton>
+                                        {/* <DefaultButton>Free Access</DefaultButton> */}
+                                        <DefaultButton>{buttonName}</DefaultButton>
                                     </span>
                                 )
                             }
