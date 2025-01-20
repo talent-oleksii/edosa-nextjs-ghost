@@ -21,12 +21,21 @@ interface LearnCardProps {
     tierid: string,
     title: string;
     header: string;
+    pretext: string;
     text: string;
-    subTitle: string;
-    items: string[];
-    bonus: any,
-    totalValue: string,
+    text1: string,
+    upItems1: any,
+    upItems2: any,
+    subTitle: string,
+    items: any,
+    bonus1: any,
+    bonus2: any,
+    value1: any,
+    value2: any,
+    collapseView: string[],
+    alert: string,
     buttonName: string,
+    textUnderBtn: string,
     button: string;
     backColor: string;
     border: string;
@@ -38,12 +47,21 @@ const LearnCard: FC<LearnCardProps> = ({
     tierid,
     title,
     header,
+    pretext,
     text,
+    text1,
+    upItems1,
+    upItems2,
     subTitle,
     items,
-    bonus,
-    totalValue,
+    bonus1,
+    bonus2,
+    value1,
+    value2,
+    collapseView,
+    alert,
     buttonName,
+    textUnderBtn,
     button,
     backColor,
     border,
@@ -100,54 +118,144 @@ const LearnCard: FC<LearnCardProps> = ({
             <div className="flex flex-col h-full">
                 {/* Flex Div 1 */}
                 <div className="mb-[auto]">
-                    <div className="text-lg sm:text-4xl leading-11 font-bold text-text-color font-inter text-center">
+                    <div className="text-lg sm:text-3xl leading-11 font-bold text-text-color font-inter text-center">
                         {title}
                     </div>
                     <div className="text-lg sm:text-lg leading-8 font-bold text-text-color font-inter text-center my-3">
-                        {header}
+                        {more && header}
                     </div>
-                    <div className={`text-sm leading-8 text-text-color px-8 my-2 min-h-[100px]`}>
+                    <div className={`text-[16px] text-text-color px-8 my-2 text-center italic`}>
+                        {!more && pretext}
+                    </div>
+                    <div className={`text-[16px] text-text-color px-8 my-2 text-center italic`}>
                         {text}
                     </div>
-                
-                    <div className="text-md text-text-color font-bold px-5 pt-3">{subTitle}</div>
-                    <div className={`px-7 mt-2`}>
-                        {items.map((item:any, index:number) => {
-                            return (
-                                <div key={index}>
-                                    <div className="flex flex-row">
-                                        <Image src={CHECK} width={24} height={24} alt="checked" />
-                                        <span className="text-sm text-text-color ml-2 my-2">{parse(item.title)}</span>
-                                    </div>
-                                    <div className="text-sm text-text-color pl-[30px]">
-                                        <ul>
-                                            {
-                                                item.subitems.map((el:string, i:number) => {
-                                                    if (!more) return;
-                                                    return (
-                                                        <li key={i} className="my-1">- {el}</li>
-                                                    )
-                                                })
-                                            }
-                                        </ul>
-                                    </div>
-                                </div>
-                            )
-                        })}
+                    <div className={`text-[16px] text-text-color px-8 my-2 text-center`}>
+                        {more && text1}
                     </div>
 
-                    <div className="text-md text-text-color px-8 mt-4 mb-2 font-inter font-bold" style={{color: "darkgreen"}}>{bonus.name}</div>
-                    <div className="text-sm text-text-color px-8">{parse(bonus.content)}</div>
-                    <div className="text-sm text-text-color pl-[40px]">
-                        {
-                            bonus.items.map((el:string, index:number) => {
-                                if (!more) return;
-                                return (
-                                    <div key={index} className="my-1">- {el}</div>
-                                )
-                            })
-                        }
-                    </div>
+                    {
+                        more && (
+                            <div>
+                                <div className="text-md text-text-color px-5 pt-3">{parse(upItems1.title)}</div>
+                                <div className="text-sm text-text-color px-[30px]">
+                                    <ul>
+                                        {
+                                            upItems1.subitems.map((el:string, i:number) => {
+                                                return (
+                                                    <li key={i} className="my-1">- {el}</li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        )
+                    }
+
+                    {
+                        more && (
+                            <div>
+                                <div className="text-md text-text-color font-bold px-5 pt-3">{parse(upItems2.title)}</div>
+                                <div className="text-sm text-text-color px-[30px]">
+                                    <ul>
+                                        {
+                                            upItems2.subitems.map((el:string, i:number) => {
+                                                return (
+                                                    <li key={i} className="my-1">- {el}</li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        )
+                    }
+                
+                    {
+                        more && (
+                            <div>
+                                <div className="text-md text-text-color font-bold px-5 pt-3">{subTitle}</div>
+                                <div className={`px-7 mt-2`}>
+                                    {items.map((item:any, index:number) => {
+                                        return (
+                                            <div key={index}>
+                                                <div className="flex flex-row">
+                                                    <Image src={CHECK} width={24} height={24} alt="checked" />
+                                                    <span className="text-sm text-text-color ml-2 my-2">{parse(item.title)}</span>
+                                                </div>
+                                                <div className="text-sm text-text-color pl-[30px]">
+                                                    <ul>
+                                                        {
+                                                            item.subitems.map((el:string, i:number) => {
+                                                                return (
+                                                                    <li key={i} className="my-1">- {el}</li>
+                                                                )
+                                                            })
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                        )
+                    }
+
+                    {
+                        more && (
+                            <div>
+                                <div className="text-md text-text-color px-8 mt-4 mb-2 font-inter font-bold" style={{color: "darkgreen"}}>{bonus1.name}</div>
+                                <div className="text-sm text-text-color px-8">{parse(bonus1.content)}</div>
+                                <div className="text-sm text-text-color pl-[40px]">
+                                    {
+                                        bonus1.items.map((el:string, index:number) => {
+                                            return (
+                                                <div key={index} className="my-1">- {el}</div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        )
+                    }
+
+                    {
+                        more && (
+                            <div>
+                                <div className="text-md text-text-color px-8 mt-4 mb-2 font-inter font-bold" style={{color: "darkgreen"}}>{bonus2.name}</div>
+                                <div className="text-sm text-text-color px-8">{parse(bonus2.content)}</div>
+                                <div className="text-sm text-text-color pl-[40px]">
+                                    {
+                                        bonus2.items.map((el:string, index:number) => {
+                                            return (
+                                                <div key={index} className="my-1">- {el}</div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        )
+                    }
+
+                    <div className="text-md text-text-color px-8 mt-4 mb-2 font-inter"><b style={{color: 'darkgreen'}}>{value1.name}</b> {value1.val}</div>
+                    <div className="text-md text-text-color px-8 font-inter">{alert}</div>
+                    <div className="text-md text-text-color px-8 mt-2 mb-4 font-inter"><b style={{color: 'darkgreen'}}>{value2.name}</b> {value2.val}</div>
+
+                    {
+                        !more && (
+                            <div>
+                                {
+                                    collapseView.map((el:any, index:number) => {
+                                        return (
+                                            <div key={index} className="text-md text-text-color px-8 my-2 font-inter">{el}</div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    }
 
                 </div>
                 {/* Flex Div 2 */}
@@ -160,9 +268,6 @@ const LearnCard: FC<LearnCardProps> = ({
                                 <span onClick={() => setMore(!more)}>More</span>
                             )
                         }
-                    </div>
-                    <div className="text-text-color text-center">
-                        Total Value: <b>{totalValue}</b>
                     </div>
                     <div className="w-full flex justify-center py-2">
                         <div className="w-5/6">
@@ -192,13 +297,18 @@ const LearnCard: FC<LearnCardProps> = ({
                         </div>
                     </div>
 
-                    {
+                    {/* {
                         !edosaJwtToken && (
                             <div className="mt-2 text-center text-text-color">
                                 Already a member? <Link href="/signin" className="text-[rgb(0,150,250)]">Sign In Here</Link>
                             </div>
                         )
-                    }
+                    } */}
+
+                    <div className="mt-2 text-center text-text-color">
+                        <Link href="#" className="text-[rgb(0,150,250)]">{textUnderBtn}</Link>
+                    </div>
+
                 </div>
             </div>
         </div>

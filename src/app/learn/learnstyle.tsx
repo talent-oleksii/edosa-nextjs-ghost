@@ -26,8 +26,18 @@ const LearnStyle: FC = () => {
                 {
                   title: 'Growth',
                   header: 'The Million-Dollar AI Advisor: 5 Days to Transform Your Technical Expertise into Strategic Value',
-                  text: "5 Day eMail Course to transform your technical expertise into strategic value in just 5 days through battle-tested frameworks I've used to deliver nine-figure transformations at organisations like AXA, Barclays Group, and AIG.",
-                  subTitle: 'Strategic Bonuses',
+                  pretext: "Transform Your Technical Expertise into Strategic Value",
+                  text: "Join 1,000+ professionals who are elevating their strategic impact",
+                  text1: "Transform your technical expertise into strategic value through battle-tested frameworks used to deliver nine-figure transformations at organisations like AXA, Barclays Group, and AIG.",
+                  upItems1: {
+                    title: "<b>Program Access & Rewards:</b>",
+                    subitems: ['Immediate access to all 5 daily lessons', 'Unlimited lifetime access to all bonus materials', 'Complete all lessons + implementation survey - Get 25% credit toward Amplify', 'Share your transformation story - Get additional 25% Amplify credit', 'Total possible: 50% credit toward your Amplify investment', 'Priority notification for advanced programs']
+                  },
+                  upItems2: {
+                    title: "Daily Lessons:",
+                    subitems: ['Day 1: Strategic Value Identification', 'Day 2: Premium Positioning Framework', 'Day 3: High-Value Conversation System', 'Day 4: Strategic Engagement Model', 'Day 5: Value Acceleration Method']
+                  },
+                  subTitle: 'Strategic Bonuses:',
                   items: [
                     {
                       title: '<b>Value Translation Framework</b>&#8482; ($997 value)',
@@ -42,19 +52,44 @@ const LearnStyle: FC = () => {
                       subitems: ['30-day quick start guide', 'Progress tracking system', 'Value documentation templates', 'Success indicators']
                     }
                   ],
-                  bonus: {
-                    name: 'Special Time-Sensitive Bonus:',
+                  bonus1: {
+                    name: 'Special Bonus:',
                     content: '<b>Strategic Advisory Roadmap</b>&#8482; ($1,497 value)',
                     items: ['Career evolution planner', 'Opportunity sizing tools', 'Risk mitigation framework', 'Value scaling system']
                   },
-                  totalValue: '$4,668',
-                  buttonName: 'Start Here'
+                  bonus2: {
+                    name: 'Ultimate Bonus:',
+                    content: '<b>Value Acceleration System</b>&#8482; ($1,697 value)',
+                    items: ['Integration Framework', 'Acceleration Tools', 'Value Compounding System', 'Success Path Templates', 'Implementation Playbook']
+                  },
+                  value1: {
+                    name: 'Total Value:',
+                    val: '$6,385'
+                  },
+                  value2: {
+                    name: 'Your Investment:',
+                    val: '$0'
+                  },
+                  collapseView: ['✓ Unlimited lifetime access to all materials', '✓ Up to 50% credit toward Amplify'],
+                  alert: "⏰ Next cohort starts February 1st",
+                  buttonName: 'Start My 5-Day Journey',
+                  textUnderBtn: 'Begin your transformation to strategic advisor...'
                 },
                 {
                   title: 'Amplify',
                   header: 'The $Million AI Advisor - From Technical Professional to High Value AI Consultant',
-                  text: "A complete transformation system based on real experience delivering nine-figure impacts across 35+ organisations.",
-                  subTitle: 'Strategic Bonuses',
+                  pretext: "From Technical Professional to High-Value AI Consultant",
+                  text: "Used by consultants delivering 6-7 figure transformations",
+                  text1: "A complete transformation system based on real experience delivering nine-figure impacts across 35+ organisations.",
+                  upItems1: {
+                    title: "<b>Implementation Rewards & Support:</b>",
+                    subitems: ['Complete program within 14 days - Get 40% credit toward Peak', 'Document your first implementation - Get additional 35% Peak credit', 'Share detailed case study - Get final 25% Peak credit', 'Total possible: 100% credit toward your Peak program investment', 'Monthly group coaching calls with successful implementers', 'Strategic framework implementation guidance', 'Priority eligibility for Peak program']
+                  },
+                  upItems2: {
+                    title: "",
+                    subitems: []
+                  },
+                  subTitle: 'Strategic Bonuses Include:',
                   items: [
                     {
                       title: '<b>Value Opportunity Assessment Toolkit</b>&#8482; ($2,997 value)',
@@ -73,19 +108,44 @@ const LearnStyle: FC = () => {
                       subitems: ['Opportunity identification', 'Risk mitigation frameworks', 'Implementation accelerators', 'Progress tracking tools']
                     }
                   ],
-                  bonus: {
-                    name: 'Early Action Bonus:',
+                  bonus1: {
+                    name: 'Early Bonus:',
                     content: '<b>Advisory Board Presentation System</b>&#8482; ($2,997 value)',
                     items: ['Executive communication frameworks', 'Value demonstration tools', 'Strategic story templates', 'Impact documentation system']
                   },
-                  totalValue: '$12,485',
-                  buttonName: 'Register Interest Here'
+                  bonus2: {
+                    name: '',
+                    content: '',
+                    items: []
+                  },
+                  value1: {
+                    name: 'Total Value:',
+                    val: '$12,485'
+                  },
+                  value2: {
+                    name: 'Your Investment:',
+                    val: '[Request Pricing Details]'
+                  },
+                  collapseView: ['✓ 30-day success guarantee', '✓ Up to 100% credit toward Peak'],
+                  alert: "🎯 Early access closing soon",
+                  buttonName: 'Get My Strategic Toolkit',
+                  textUnderBtn: 'Discover proven frameworks for million-dollar impacts...'
                 },
                 {
                   title: 'Peak',
                   header: 'The AI Advisory Accelerator Program',
-                  text: "Fully personalised guidance through your transformation journey, based on experience delivering nine-figure impacts at organisations like AXA, the European Commission, and Barclays Group.",
-                  subTitle: 'Strategic Inclusions',
+                  pretext: "The AI Advisory Accelerator Program",
+                  text: "Limited to 10 high-impact professionals per quarter",
+                  text1: "Fully personalised guidance through your transformation journey, based on experience delivering nine-figure impacts at organisations like AXA, the European Commission, and Barclays Group.",
+                  upItems1: {
+                    title: "<b>Program Delivery & Success Milestones:</b>",
+                    subitems: ['Clear 90-day implementation roadmap', 'Bi-weekly progress check-ins', 'Quarterly value review sessions', 'Implementation support throughout', 'Access to private advisory community', 'Regular strategy alignment reviews']
+                  },
+                  upItems2: {
+                    title: "",
+                    subitems: []
+                  },
+                  subTitle: 'Strategic Inclusions:',
                   items: [
                     {
                       title: '<b>Strategic Evolution System</b>&#8482; ($15,000 value)',
@@ -104,17 +164,32 @@ const LearnStyle: FC = () => {
                       subitems: ['Long-term value architecture', 'Market positioning system', 'Innovation framework', 'Future-proofing method']
                     }
                   ],
-                  bonus: {
+                  bonus1: {
                     name: 'VIP Bonus:',
                     content: '<b>Private Advisory Council Access</b>&#8482; ($45,000 value)',
                     items: ['Direct strategic guidance', 'Implementation support', 'Pattern recognition', 'Success acceleration']
                   },
-                  totalValue: '$115,000',
-                  buttonName: 'Apply Here'
+                  bonus2: {
+                    name: '',
+                    content: '',
+                    items: []
+                  },
+                  value1: {
+                    name: 'Total Value:',
+                    val: '$115,000'
+                  },
+                  value2: {
+                    name: 'Your Investment:',
+                    val: '[Custom Program Details]'
+                  },
+                  collapseView: ['✓ Milestone-based delivery', '✓ Quarterly value reviews'],
+                  alert: "⚡ 3 spots remaining this quarter",
+                  buttonName: 'Begin My Advisory Journey',
+                  textUnderBtn: 'Transform your expertise into lasting impact...'
                 }
               ]
 
-              let demoLearnItems: { title: string; header: any; text: any; items: any; buttonStyle: string; backColor: string; border: string; }[] = [];
+              let demoLearnItems: any[] = [];
               res.data.tiers
                 .filter((item: { name: string; }) => TiersNames.includes(item.name))
                 .map((el: any, index: number) => {
@@ -122,12 +197,21 @@ const LearnStyle: FC = () => {
                       tierId: el.id,
                       title: readyData[index].title,
                       header: readyData[index].header,
+                      pretext: readyData[index].pretext,
                       text: readyData[index].text,
+                      text1: readyData[index].text1,
+                      upItems1: readyData[index].upItems1,
+                      upItems2: readyData[index].upItems2,
                       subTitle: readyData[index].subTitle,
                       items: readyData[index].items,
-                      bonus: readyData[index].bonus,
-                      totalValue: readyData[index].totalValue,
+                      bonus1: readyData[index].bonus1,
+                      bonus2: readyData[index].bonus2,
+                      value1: readyData[index].value1,
+                      value2: readyData[index].value2,
+                      collapseView: readyData[index].collapseView,
+                      alert: readyData[index].alert,
                       buttonName: readyData[index].buttonName,
+                      textUnderBtn: readyData[index].textUnderBtn,
                       buttonStyle: el.type == 'paid' ? 'paid' : 'free',
                       backColor: index%2 == 0 ? "white" : "#F3F8FE",
                       border: index%2 == 0 ? "border-2 border-gray-300" : "border-solid",
@@ -167,12 +251,21 @@ const LearnStyle: FC = () => {
               tierid={item.tierId}
               title={item.title}
               header={item.header}
+              pretext={item.pretext}
               text={item.text}
+              text1={item.text1}
+              upItems1={item.upItems1}
+              upItems2={item.upItems2}
               subTitle={item.subTitle}
               items={item.items}
-              bonus={item.bonus}
-              totalValue={item.totalValue}
+              bonus1={item.bonus1}
+              bonus2={item.bonus2}
+              value1={item.value1}
+              value2={item.value2}
+              collapseView={item.collapseView}
+              alert={item.alert}
               buttonName={item.buttonName}
+              textUnderBtn={item.textUnderBtn}
               button={item.buttonStyle}
               backColor={item.backColor}
               border={item.border}
