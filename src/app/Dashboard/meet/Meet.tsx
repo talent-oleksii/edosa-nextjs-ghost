@@ -63,75 +63,6 @@ const bookTimes = [
 
 const Meet: FC = () => {
 
-    const [timezoneDropdown, setTimezoneDropdown] = useState<boolean>(false);
-    const [timezone, setTimezone] = useState<any>([
-        '(GMT -11:00) Midway Island, Samoa',
-        '(GMT -10:00) Hawaii',
-        '(GMT -9:00) Alaska',
-        '(GMT -8:00) Chihuahua, La Paz, Mazatlan',
-        '(GMT -8:00) Pacific Time (US & Canada); Tijuana',
-        '(GMT -7:00) Arizona',
-        '(GMT -7:00) Mountain Time (US & Canada)',
-        '(GMT -6:00) Central America',
-        '(GMT -6:00) Central Time (US & Canada)',
-        '(GMT -6:00) Guadalajara, Mexico City, Monterrey',
-        '(GMT -6:00) Saskatchewan',
-        '(GMT -5:00) Bogota, Lima, Quito',
-        '(GMT -5:00) Eastern Time (US & Canada)',
-        '(GMT -5:00) Indiana (East)',
-        '(GMT -4:00) Caracas, La Paz',
-        '(GMT -4:00) Atlantic Time (Canada); Greenland',
-        '(GMT -4:00) Santiago',
-        '(GMT -3:30) Newfoundland',
-        '(GMT -3:00) Buenos Aires, Brasilia, Georgetown',
-        '(GMT -2:00) Fernando de Noronha',
-        '(GMT -1:00) Azores',
-        '(GMT -1:00) Cape Verde Is.',
-        '(GMT) UTC',
-        '(GMT +0:00) Casablanca, Monrovia',
-        '(GMT +0:00) Dublin, Edinburgh, London',
-        '(GMT +1:00) Amsterdam, Berlin, Rome, Stockholm, Vienna',
-        '(GMT +1:00) Belgrade, Bratislava, Budapest, Prague',
-        '(GMT +1:00) Brussels, Copenhagen, Madrid, Paris',
-        '(GMT +1:00) Sarajevo, Skopje, Warsaw, Zagreb',
-        '(GMT +1:00) West Central Africa',
-        '(GMT +2:00) Athens, Beirut, Bucharest, Istanbul',
-        '(GMT +2:00) Cairo, Egypt',
-        '(GMT +2:00) Harare',
-        '(GMT +2:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius',
-        '(GMT +2:00) Jerusalem',
-        '(GMT +2:00) Pretoria',
-        '(GMT +3:00) Baghdad',
-        '(GMT +3:00) Kuwait, Nairobi, Riyadh',
-        '(GMT +3:00) Moscow, St.Petersburg, Volgograd',
-        '(GMT +3:30) Tehran',
-        '(GMT +4:00) Abu Dhabi, Muscat',
-        '(GMT +4:00) Baku, Tbilsi, Yerevan',
-        '(GMT +4:30) Kabul',
-        '(GMT +5:00) Islamabad, Karachi, Tashkent',
-        '(GMT +5:00) Yekaterinburg',
-        '(GMT +5:30) Chennai, Calcutta, Mumbai, New Delhi',
-        '(GMT +5:45) Katmandu',
-        '(GMT +6:00) Almaty, Novosibrisk',
-        '(GMT +6:00) Astana, Dhaka, Sri Jayawardenepura',
-        '(GMT +6:30) Rangoon',
-        '(GMT +7:00) Bangkok, Hanoi, Jakarta',
-        '(GMT +7:00) Krasnoyarsk',
-        '(GMT +8:00) Beijing, Chongqing, Hong Kong, Urumqi',
-        '(GMT +8:00) Irkutsk, Ulaan Bataar',
-        '(GMT +8:00) kuala Lumpur, Perth, Singapore, Taipei',
-        '(GMT +9:00) Osaka, Sapporo, Tokyo',
-        '(GMT +9:00) Seoul',
-        '(GMT +9:00) Yakutsk',
-        '(GMT +9:30) Adelaide',
-        '(GMT +9:30) Darwin',
-        '(GMT +10:00) Brisbane, Guam, Port Moresby',
-        '(GMT +10:00) Canberra, Hobart, Melbourne, Sydney, Vladivostok',
-        '(GMT +11:00) Magadan, Soloman Is., New Caledonia',
-        '(GMT +12:00) Auckland, Wellington',
-        '(GMT +12:00) Fiji, Kamchatka, Marshall Is.',
-        '(GMT +12:00) International Date Line West'
-    ]);
     const [timeToBook, setTimeToBook] = useState<string>('');
     const [select, setSelect] = useState<string>('');   // get day of week via props from Calendar component
     const [availableTime, setAvailableTime] = useState<any>([]);
@@ -159,6 +90,19 @@ const Meet: FC = () => {
 
         getCalendar();
     }, [select]);
+
+
+    React.useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        document.body.appendChild(script);
+    
+        return () => {
+          document.body.removeChild(script);
+        };
+    }, []);
+
 
     const onBook = async() => {
 
@@ -253,7 +197,12 @@ const Meet: FC = () => {
                     Services &gt; Meet &gt; Personal Coaching
                 </h1>
 
-                <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mx-1 sm:mx-5">
+
+                <div className="calendly-inline-widget" data-url="https://calendly.com/edosa/quick-chat" style={{minWidth: '320px', height: '700px'}}></div>
+
+
+
+                {/* <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mx-1 sm:mx-5">
                     <div className='w-full h-full bg-m-demo-color rounded-[22px] sm:px-4 py-4'>
                         <h1 className='text-[20px] md:text-[24px] font-bold text-center text-[#101828]'>
                             Personal Coaching
@@ -261,12 +210,6 @@ const Meet: FC = () => {
                         <div className='text-center py-3'>
                             <Calendar onSelect={setSelect} />
                         </div>
-                        {/* <div 
-                            className='w-full flex justify-center hover:cursor-pointer' 
-                            onClick={() => setTimezoneDropdown(!timezoneDropdown)}
-                        >
-                            Eastern Time - US & Canada <span className="ml-2 my-1">{timezoneDropdown ? <IoIosArrowDown /> : <IoIosArrowUp />}</span>
-                        </div> */}
                     </div>
                     <div className='px-3'>
                         <div className="text-[20px] sm:text-[23px] md:text-[36px] leading-11 font-bold text-text-color my-5">
@@ -315,7 +258,8 @@ const Meet: FC = () => {
                             </Link>
                         </div>
                     </div>
-                </div>
+                </div> */}
+                
             </div>
             <ToastContainer />
         </div>
