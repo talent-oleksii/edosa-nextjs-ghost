@@ -48,7 +48,7 @@ const links: Array<{ text: string, link: string, textColor: string, bgColor: str
     text: "Meet",
     link: "/meet",
     textColor: "m-main-color",
-    bgColor: "#F2FAEC"
+    bgColor: "#f2faec"
   },
 ];
 
@@ -268,7 +268,7 @@ const Header: FC = () => {
           {/* <Image src={SEARCHICON} className='w-5 h-5 hover:cursor-pointer' alt='search' /> */}
           <div className='w-0 sm:w-10 h-5'></div>
 
-            {
+            {/* {
               !user ? (
 
                   <Link href='/signin'><DefaultButton className='text-[14px] md:text-[20px] py-[8px]'>Access</DefaultButton></Link>
@@ -328,7 +328,7 @@ const Header: FC = () => {
                   </Menu>
                   
               )
-            }  
+            } */}
         
           {/* <DefaultButton className='max-w-3 aspect-square'>&nbsp;</DefaultButton> */}
         </div>

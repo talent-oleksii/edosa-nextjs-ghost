@@ -193,9 +193,9 @@ const Meet: FC = () => {
     return (
         <div className='w-full h-full bg-[#F9F9F9] rounded-[22px] px-4 sm:px-7 py-5 sm:py-10'>
             <div className='w-full h-full bg-[#FFF] rounded-[22px] pb-3'>
-                <h1 className='text-[18px] sm:text-[20px] md:text-[24px] font-bold font-inter font-[#344054] px-4 sm:px-7 py-5 text-text-color'>
+                {/* <h1 className='text-[18px] sm:text-[20px] md:text-[24px] font-bold font-inter font-[#344054] px-4 sm:px-7 py-5 text-text-color'>
                     Services &gt; Meet &gt; Personal Coaching
-                </h1>
+                </h1> */}
 
 
                 <div className="calendly-inline-widget" data-url="https://calendly.com/edosa/quick-chat" style={{minWidth: '320px', height: '700px'}}></div>
