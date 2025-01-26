@@ -170,9 +170,7 @@ const Newsletter: NextPage = () => {
                             <div className='text-[#344054] font-bold text-[18px] sm:text-[25px] px-3'>
                                 {detail.title}
                             </div>
-                            <div className='mt-5 leading-[30px] text-[#344054] font-inter text-[18px] px-3'>
-                                {parse(detail.html)}
-                            </div>
+                            <div className='mt-5 leading-[30px] text-[#344054] font-inter text-[18px] px-3 post-body' dangerouslySetInnerHTML={{ __html: detail.html }}></div>
                         </div>
                     )
                 }

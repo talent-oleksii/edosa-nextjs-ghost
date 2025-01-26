@@ -20,3 +20,45 @@ body {
     text-wrap: balance;
   }
 }
+
+
+
+
+/*  Ghost css style  */
+
+.post-body h2 {
+  font-size: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.post-body p {
+  margin-bottom: 1.5rem;
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-body blockquote {
+  font-style: italic;
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #0070f3;
+  background: #f9f9f9;
+  color: #555;
+}
+
+.post-body a {
+  color: #0070f3;
+  text-decoration: underline;
+}
+
+.post-body a:hover {
+  text-decoration: none;
+}

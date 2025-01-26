@@ -153,7 +153,9 @@ const Read: FC = () => {
 
                 {
                     isReading && individual && (
-                        <div className='p-5 text-text-color text-[1.2rem] leading-[2rem]' dangerouslySetInnerHTML={{ __html: individual?.html }}></div>
+                        <article>
+                            <div className='p-5 text-text-color text-[1.2rem] leading-[2rem] post-body' dangerouslySetInnerHTML={{ __html: individual.html }}></div>
+                        </article>
                     )
                 }
 
