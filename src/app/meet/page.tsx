@@ -4,6 +4,8 @@ import LearnMainComponent from './meetmaincomponent';
 import Footer from '../footer';
 import PersonalCoaching from "./personalcoaching";
 import ReadHintPage from "./readhintpage";
+import FlowingBar from "../homepage/flowingbar";
+
 const Watch: NextPage = () => {
     return (
         <div className='mx-5 pb-5'>
@@ -12,6 +14,7 @@ const Watch: NextPage = () => {
                 <LearnMainComponent />
                 <PersonalCoaching />
                 <ReadHintPage />
+                <FlowingBar />
                 <Footer />
             </div>
         </div>

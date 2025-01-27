@@ -6,6 +6,8 @@ import Footer from '../footer';
 import WatchMainComponent from "./watchmaincomponent";
 import WatchContent from "./watchcontent";
 import StayUpdated from "../homepage/stayupdated";
+import FlowingBar from "../homepage/flowingbar";
+import LearnStyle from "../learn/learnstyle";
 
 const Watch: NextPage = () => {
     return (
@@ -15,7 +17,11 @@ const Watch: NextPage = () => {
                     <Header />
                     <WatchMainComponent />
                     <WatchContent />
-                    <StayUpdated />
+                    {/* <StayUpdated /> */}
+                    <div className="my-10"></div>
+                    <LearnStyle />
+                    <div className="my-10"></div>
+                    <FlowingBar />
                     <Footer />
                 </Suspense>
             </div>

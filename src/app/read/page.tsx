@@ -8,6 +8,7 @@ import Books from "./books";
 import HintPage from "./hintpage";
 import ReadingCards from "./readingcards";
 import SignUpNewsletter from "../homepage/signupnewsletter";
+import FlowingBar from "../homepage/flowingbar";
 
 const Read: NextPage = () => {
     return (
@@ -20,6 +21,7 @@ const Read: NextPage = () => {
                     <HintPage />
                     <ReadingCards />
                     <SignUpNewsletter />
+                    <FlowingBar />
                     <Footer />
                 </Suspense>
             </div>

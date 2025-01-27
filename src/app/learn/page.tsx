@@ -8,6 +8,8 @@ import LearnStyle from "./learnstyle";
 import BuildPackage from "./buildpackage";
 import ReviewComponent from "../components/reviewcomponent";
 import Courses from "./courses";
+import FlowingBar from "../homepage/flowingbar";
+import Prelearn from "./prelearn";
 
 const Learn: NextPage = () => {
     return (
@@ -16,10 +18,12 @@ const Learn: NextPage = () => {
                 <Suspense>
                     <Header />
                     <LearnMainComponent />
+                    <Prelearn />
                     <LearnStyle />
                     <BuildPackage />
                     <Courses />
                     <ReviewComponent />
+                    <FlowingBar />
                     <Footer />
                 </Suspense>
             </div>
