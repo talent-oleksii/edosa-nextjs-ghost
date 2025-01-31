@@ -12,24 +12,34 @@ const Footer: FC = () => {
           <div className="flex flex-col gap-5">
             <div className="leading-6 text-[#667085]">Learn</div>
             <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Bundles</div>
-            <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Course</div>
+            <Link href="/Dashboard/learn">
+              <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Course</div>
+            </Link>
           </div>
           <div className="flex flex-col gap-5">
             <div className="leading-6 text-[#667085]">Read</div>
-            <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Books</div>
+            <Link href="/Dashboard/read">
+              <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Books</div>
+            </Link>
             <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Articles</div>
-            <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Newsletter</div>
+            <Link href="/Dashboard/newsletter">
+              <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Newsletter</div>
+            </Link>
             <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Request</div>
           </div>
           <div className="flex flex-col gap-5">
             <div className="leading-6 text-[#667085]">Watch</div>
             <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Videos</div>
-            <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Podcast</div>
+            <Link href="/Dashboard/watch">
+              <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Podcast</div>
+            </Link>
             <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Events</div>
           </div>
           <div className="flex flex-col gap-5">
             <div className="leading-6 text-[#667085]">Meet</div>
-            <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">About Edosa</div>
+            <Link href="/Dashboard/meet">
+              <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">About Edosa</div>
+            </Link>
             <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Coaching</div>
             <div className="pl-4 sm:pl-0 font-bold text-[#475467] leading-3 sm:leading-6 text-[14px] sm:text-[16px]">Speaker</div>
           </div>
