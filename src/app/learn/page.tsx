@@ -1,5 +1,6 @@
 'use client';
 import type { NextPage } from "next";
+import React, { useState } from 'react';
 import { Suspense } from 'react';
 import Header from '../header';
 import LearnMainComponent from './learnmaincomponent';
@@ -10,8 +11,20 @@ import ReviewComponent from "../components/reviewcomponent";
 import Courses from "./courses";
 import FlowingBar from "../homepage/flowingbar";
 import Prelearn from "./prelearn";
+import axios from "axios";
 
 const Learn: NextPage = () => {
+    const [packageDisplay, setPackageDisplay] = useState<boolean>();
+
+    React.useEffect(() => {
+        const getPackageDisplay = async() => {
+            const response = await axios.get<any>('/api/packageAdmin/getPackage');
+            setPackageDisplay(response.data.enable);
+        }
+
+        getPackageDisplay();
+    }, []);
+    
     return (
         <div className='mx-5 pb-5'>
             <div className="max-w-[1440px] mx-auto">
@@ -20,7 +33,9 @@ const Learn: NextPage = () => {
                     <LearnMainComponent />
                     <Prelearn />
                     <LearnStyle />
-                    <BuildPackage />
+                    {
+                        packageDisplay && (<BuildPackage />)
+                    }
                     <Courses />
                     <ReviewComponent />
                     <FlowingBar />

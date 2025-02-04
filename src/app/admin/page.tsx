@@ -8,6 +8,7 @@ import Meet from './meet/page';
 import Chatbot from './chatbot/page';
 import Calendar from './calendar/page';
 import Assessment from './assessment/page';
+import Package from './package/Package';
 import { IoIosArrowDown, IoIosArrowUp  } from "react-icons/io";
 
 const items = {
@@ -17,7 +18,8 @@ const items = {
     meet: 'Meet',
     chatbot: 'Chatbot',
     calendar: 'Calendar',
-    assessment: 'Assessment'
+    assessment: 'Assessment',
+    package: 'Package'
 }
 
 const Admin: FC = () => {
@@ -90,7 +92,7 @@ const Admin: FC = () => {
                                     >
                                         Chatbot
                                     </div>
-                                    <div 
+                                    {/* <div 
                                         className={`my-3 hover:cursor-pointer ${selected == 'calendar' && 'font-bold'}`}
                                         onClick={() => {
                                             setSelected('calendar');
@@ -98,7 +100,7 @@ const Admin: FC = () => {
                                         }}
                                     >
                                         Calendar
-                                    </div>
+                                    </div> */}
                                     <div 
                                         className={`my-3 hover:cursor-pointer ${selected == 'assessment' && 'font-bold'}`}
                                         onClick={() => {
@@ -107,6 +109,15 @@ const Admin: FC = () => {
                                         }}
                                     >
                                         Assessment
+                                    </div>
+                                    <div 
+                                        className={`my-3 hover:cursor-pointer ${selected == 'package' && 'font-bold'}`}
+                                        onClick={() => {
+                                            setSelected('package');
+                                            setExpand(false);
+                                        }}
+                                    >
+                                        Package
                                     </div>
                                 </div>
                             </div>
@@ -146,17 +157,23 @@ const Admin: FC = () => {
                             >
                                 Chatbot
                             </div>
-                            <div 
+                            {/* <div 
                                 className={`my-3 hover:cursor-pointer ${selected == 'calendar' && 'font-bold'}`}
                                 onClick={() => setSelected('calendar')}
                             >
                                 Calendar
-                            </div>
+                            </div> */}
                             <div 
                                 className={`my-3 hover:cursor-pointer ${selected == 'assessment' && 'font-bold'}`}
                                 onClick={() => setSelected('assessment')}
                             >
                                 Assessment
+                            </div>
+                            <div 
+                                className={`my-3 hover:cursor-pointer ${selected == 'package' && 'font-bold'}`}
+                                onClick={() => setSelected('package')}
+                            >
+                                Package
                             </div>
                         </div>
                     </div>
@@ -172,6 +189,7 @@ const Admin: FC = () => {
                     { selected == 'chatbot' && (<Chatbot />) }
                     { selected == 'calendar' && (<Calendar />) }
                     { selected == 'assessment' && (<Assessment />) }
+                    { selected == 'package' && (<Package />) }
                 </div>
             </div>
         </div>
