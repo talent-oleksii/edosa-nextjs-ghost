@@ -121,7 +121,7 @@ const LearnCard: FC<LearnCardProps> = ({
                     <div className="text-lg sm:text-3xl leading-11 font-bold text-text-color font-inter text-center">
                         {title}
                     </div>
-                    <div className="text-lg sm:text-lg leading-8 font-bold text-text-color font-inter text-center my-3">
+                    <div className="text-lg sm:text-lg leading-8 font-bold font-inter text-center my-3 text-l-main-color">
                         {more && header}
                     </div>
                     <div className={`text-[16px] text-text-color px-8 my-2 text-center italic`}>
