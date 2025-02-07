@@ -7,8 +7,6 @@
   --foreground: #171717;
 }
 
-
-
 body {
   color: var(--foreground);
   background: var(--background);
@@ -26,39 +24,165 @@ body {
 
 /*  Ghost css style  */
 
-.post-body h2 {
-  font-size: 2rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  color: #222;
-}
 
-.post-body p {
-  margin-bottom: 1.5rem;
-}
-
-.post-body img {
-  max-width: 100%;
-  height: auto;
-  margin: 1.5rem 0;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.post-body blockquote {
-  font-style: italic;
-  margin: 1.5rem 0;
-  padding: 1rem 1.5rem;
-  border-left: 4px solid #0070f3;
-  background: #f9f9f9;
-  color: #555;
-}
-
-.post-body a {
-  color: #0070f3;
-  text-decoration: underline;
-}
-
-.post-body a:hover {
+.post-body figcaption a {
+  color: var(--color-darker-gray);
   text-decoration: none;
+}
+
+.post-body .publisher-item a {
+  text-decoration: none;
+}
+
+.post-body {
+  letter-spacing: var(--content-letter-spacing, 0);
+  word-break: break-word;
+}
+.post-body > * + * {
+  margin-bottom: 0;
+  margin-top: calc(1.6em * var(--content-spacing-multiplier, 1));
+}
+.post-body > [id] {
+  margin: 0;
+}
+.post-body > .kg-card + [id] {
+  margin-top: calc(2em * var(--content-spacing-multiplier, 1)) !important;
+}
+.has-serif-title .post-body > [id] {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+.post-body > [id]:not(:first-child) {
+  margin-top: calc(1.6em * var(--content-spacing-multiplier, 1));
+}
+.post-body > [id] + * {
+  margin-top: calc(0.8em * var(--content-spacing-multiplier, 1));
+}
+.post-body > blockquote,
+.post-body > hr {
+  position: relative;
+}
+.post-body > blockquote,
+.post-body > blockquote + *,
+.post-body > hr,
+.post-body > hr + * {
+  margin-top: calc(2.4em * var(--content-spacing-multiplier, 1));
+}
+.post-body h2 {
+  font-size: 1.6em;
+}
+.post-body h3 {
+  font-size: 1.4em;
+}
+.post-body a {
+  color: var(--ghost-accent-color);
+  text-decoration: underline;
+  word-break: break-word;
+}
+.post-body .kg-callout-card .kg-callout-text,
+.post-body .kg-toggle-card .kg-toggle-content > ol,
+.post-body .kg-toggle-card .kg-toggle-content > p,
+.post-body .kg-toggle-card .kg-toggle-content > ul {
+  font-size: 0.95em;
+}
+.has-serif-body .post-body .kg-callout-text,
+.has-serif-body .post-body .kg-toggle-content > ol,
+.has-serif-body .post-body .kg-toggle-content > p,
+.has-serif-body .post-body .kg-toggle-content > ul,
+.has-serif-body .post-body > blockquote,
+.has-serif-body .post-body > dl,
+.has-serif-body .post-body > ol,
+.has-serif-body .post-body > p,
+.has-serif-body .post-body > ul {
+  font-family: var(--font-serif);
+}
+.post-body dl,
+.post-body ol,
+.post-body ul {
+  padding-left: 2.8rem;
+}
+.post-body :is(li + li, li :is(ul, ol)) {
+  margin-top: 0.8rem;
+}
+.post-body ol ol li {
+  list-style-type: lower-alpha;
+}
+.post-body ol ol ol li {
+  list-style-type: lower-roman;
+}
+.post-body table:not(.gist table) {
+  -webkit-overflow-scrolling: touch;
+  background: radial-gradient(
+        ellipse at left,
+        rgba(0, 0, 0, 0.2) 0,
+        transparent 75%
+      )
+      0,
+    radial-gradient(ellipse at right, rgba(0, 0, 0, 0.2) 0, transparent 75%)
+      100%;
+  background-attachment: scroll, scroll;
+  background-repeat: no-repeat;
+  background-size: 10px 100%, 10px 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 1.6rem;
+  max-width: 100%;
+  overflow-x: auto;
+  vertical-align: top;
+  white-space: nowrap;
+  width: auto;
+}
+.post-body table:not(.gist table) td:first-child {
+  background-image: linear-gradient(90deg, #fff 50%, hsla(0, 0%, 100%, 0));
+  background-repeat: no-repeat;
+  background-size: 20px 100%;
+}
+.post-body table:not(.gist table) td:last-child {
+  background-image: linear-gradient(270deg, #fff 50%, hsla(0, 0%, 100%, 0));
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  background-size: 20px 100%;
+}
+.post-body table:not(.gist table) th {
+  background-color: var(--color-white);
+  color: var(--color-darkgrey);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-align: left;
+  text-transform: uppercase;
+}
+.post-body table:not(.gist table) td,
+.post-body table:not(.gist table) th {
+  border: 1px solid var(--color-light-gray);
+  padding: 6px 12px;
+}
+
+
+.post-body :not(.kg-card):not(table):not([id]) + :is(.kg-card, table) {
+  margin-top: calc(2em * var(--content-spacing-multiplier, 1));
+}
+.post-body :is(.kg-card, table) + :not(.kg-card):not(table):not([id]) {
+  margin-top: calc(2em * var(--content-spacing-multiplier, 1));
+}
+
+
+
+.post-body,
+.kg-width-full.kg-content-wide {
+  --main: min(var(--content-width, 720px), 100% - var(--gap) * 2);
+  --wide: minmax(
+    0,
+    calc((var(--container-width, 1200px) - var(--content-width, 720px)) / 2)
+  );
+  --full: minmax(var(--gap), 1fr);
+  display: grid;
+  grid-template-columns: [full-start] var(--full) [wide-start] var(--wide) [main-start] var(
+      --main
+    ) [main-end] var(--wide) [wide-end] var(--full) [full-end];
+}
+.post-body > * {
+  grid-column: main;
 }
