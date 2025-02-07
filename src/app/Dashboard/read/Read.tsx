@@ -85,7 +85,7 @@ const Read: FC = () => {
             <div className='w-full h-full bg-[#FFF] rounded-[22px] pb-3'>
                 <h1 className='text-[18px] sm:text-[20px] md:text-[24px] font-bold font-inter font-[#344054] px-4 sm:px-7 py-5 text-text-color'>
                     <span className='hover:cursor-pointer' onClick={initIndividual}>
-                        Services &gt; Read {individual && ` > ` + individual.title}
+                        Read {individual && ` > ` + individual.title}
                     </span>
                 </h1>
 
@@ -137,9 +137,9 @@ const Read: FC = () => {
                                     {individual.title}
                                 </div>
                                 <div className='w-full flex justify-center gap-3 text-center mt-5'>
-                                    <Link href="#" className="w-[120px] sm:w-[160px] md:w-[210px] h-[40px] font-bold text-[#344054] px-3 py-3 text-xs text-center bg-white rounded-[20px] border border-solid border-[#475467]">
+                                    {/* <Link href="#" className="w-[120px] sm:w-[160px] md:w-[210px] h-[40px] font-bold text-[#344054] px-3 py-3 text-xs text-center bg-white rounded-[20px] border border-solid border-[#475467]">
                                         <button>Download</button>
-                                    </Link>
+                                    </Link> */}
                                     <Link href="#" onClick={() => setIsReading(true)}>
                                         <DefaultButton className='w-[120px] sm:w-[160px] md:w-[210px] h-[40px] font-bold px-3 py-[10px] text-xs text-center'>
                                             Start Reading

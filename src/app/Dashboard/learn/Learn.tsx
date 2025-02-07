@@ -75,7 +75,7 @@ const Learn: FC = () => {
             <div className='w-full h-full bg-[#FFF] rounded-[22px] pb-3'>
                 <h1 className='text-[18px] sm:text-[20px] md:text-[24px] font-bold font-inter font-[#344054] px-4 sm:px-7 py-5 text-text-color'>
                     <Link href="#" onClick={() => { setViewAll(false); setDetail({}); }}>
-                        Services &gt; Learn &gt; Courses
+                        Learn &gt; Courses
                     </Link>
                 </h1>
 
@@ -132,9 +132,9 @@ const Learn: FC = () => {
 
 
                                 <div className='mt-12 flex gap-3 text-center justify-center w-full'>
-                                    <Link href="#" className="w-[120px] sm:w-[160px] md:w-[210px] h-[40px] font-bold text-[#344054] px-3 py-3 text-xs text-center bg-white rounded-[20px] border border-solid border-[#475467]">
+                                    {/* <Link href="#" className="w-[120px] sm:w-[160px] md:w-[210px] h-[40px] font-bold text-[#344054] px-3 py-3 text-xs text-center bg-white rounded-[20px] border border-solid border-[#475467]">
                                         <button>In Progress</button>
-                                    </Link>
+                                    </Link> */}
                                     <Link href="#" onClick={() => setViewAll(true)}>
                                         <DefaultButton className='w-[120px] sm:w-[160px] md:w-[210px] h-[40px] font-bold px-3 py-[10px] text-xs text-center'>
                                             View All
